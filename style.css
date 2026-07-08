@@ -1,0 +1,41 @@
+/* Remove os espaçamentos padrões do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte da aplicação */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #2563EB;
+    color: white;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    min-height: calc(100vh - 72px);
+}
+
+/* Menu lateral */
+aside {
+    width: 250px;
+    background-color: #F1F5F9;
+    padding: 20px;
+}
+
+/* Área principal */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+}
