@@ -129,6 +129,14 @@ main h2 {
     color: #1E3A8A;
 }
 
+.card.receita svg {
+    color: #16A34A;
+}
+
+.card.despesa svg {
+    color: #DC2626;
+}
+
 /* ==========================
    CORES DOS CARDS
 ========================== */
@@ -138,12 +146,12 @@ main h2 {
     overflow: hidden;
 }
 
-.card span {
-    font-size: 32px;
-    display: block;
+.card svg {
+    width: 36px;
+    height: 36px;
     margin-bottom: 12px;
+    color: #1E3A8A;
 }
-
 .card.saldo {
     border-left: 6px solid #1E3A8A;
 }
