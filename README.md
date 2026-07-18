@@ -11,31 +11,30 @@ Permitir que o usuário controle suas receitas e despesas de forma simples, ráp
 ---
 
 ## 🚀 Tecnologias
-
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- Supabase
-- PostgreSQL
-- Chart.js
-- Git
-- GitHub
+HTML5
+CSS3
+JavaScript
+Git
+GitHub
+Firebase ou Supabase (conforme a evolução do projeto)
 
 ---
 
 ## 📋 Funcionalidades (Versão 1.0)
 
-- Cadastro de receitas
-- Cadastro de despesas
-- Edição de transações
-- Exclusão de transações
-- Dashboard financeiro
-- Gráficos
-- Pesquisa de transações
-- Filtros por período
-- Orçamento mensal
-- Metas financeiras
-- Tema claro/escuro
+Dashboard financeiro
+Controle de receitas
+Controle de despesas
+Categorias
+Relatórios
+Gráficos
+Metas financeiras
+Contas bancárias
+Cartões de crédito
+Orçamento mensal
+Backup em nuvem
+Sincronização entre dispositivos
+Inteligência Artificial para análise financeira (planejada)
 
 ---
 
