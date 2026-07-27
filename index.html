@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alveso | Personal Finance</title>
+    <title>Caltrack | Sua vida financeira sob controle<</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <header>
     <div class="logo">
-        <h1>💰 Alveso</h1>
-        <p>Personal Finance</p>
+        <h1>💰 Caltrack</h1>
+        <p>Sua vida financeira sob controle</p>
     </div>
 </header>
 
@@ -31,26 +31,26 @@
 <main>
 
    <section class="cards">
+<div class="card saldo">
+    <i data-lucide="wallet"></i>
+    <h3>Saldo Total</h3>
+    <p id="saldo-total">R$ 0,00</p>
+</div>
 
-    <div class="card saldo">
-        <i data-lucide="wallet"></i>
-        <h3>Saldo Total</h3>
-        <p>R$ 0,00</p>
-    </div>
+<div class="card receita">
+    <i data-lucide="trending-up"></i>
+    <h3>Receitas</h3>
+    <p id="total-receitas">R$ 0,00</p>
+</div>
 
-    <div class="card receita">
-        <i data-lucide="trending-up"></i>
-        <h3>Receitas</h3>
-        <p>R$ 0,00</p>
-    </div>
-
-    <div class="card despesa">
-        <i data-lucide="trending-down"></i>
-        <h3>Despesas</h3>
-        <p>R$ 0,00</p>
-    </div>
+<div class="card despesa">
+    <i data-lucide="trending-down"></i>
+    <h3>Despesas</h3>
+    <p id="total-despesas">R$ 0,00</p>
+</div>
 
 </section>
+
 <section class="grafico">
 
     <div class="grafico-header">
@@ -77,49 +77,90 @@
 
         <thead>
 
-            <tr>
-                <th>Data</th>
-                <th>Descrição</th>
-                <th>Categoria</th>
-                <th>Tipo</th>
-                <th>Valor</th>
-            </tr>
+          <tr>
+    <th>Data</th>
+    <th>Descrição</th>
+    <th>Categoria</th>
+    <th>Tipo</th>
+    <th>Valor</th>
+    <th>Ações</th>
+</tr>
 
         </thead>
 
-        <tbody>
+   <tbody id="corpo-tabela">
 
-            <tr>
-                <td colspan="5">
-                    Nenhuma transação cadastrada.
-                </td>
-            </tr>
-
-        </tbody>
+</tbody>
 
     </table>
 
 </section>
-
-<section class="grafico">
-
-    <div class="grafico-header">
-        <h3>Resumo Financeiro</h3>
-    </div>
-
-    <div class="grafico-placeholder">
-        <p>📊 Gráfico Financeiro (em desenvolvimento)</p>
-    </div>
-
-</section>
-
 
 </main>
 
 </div>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="js/app.js"></script>
+
+<!-- Modal Nova Transação -->
+<div id="modal" class="modal oculto">
+
+    <div class="modal-conteudo">
+
+         <h2>Nova Transação</h2>
+
+        <form id="form-transacao">
+       
+
+        <label>Descrição</label>
+        <input id="descricao" type="text" placeholder="Ex.: Supermercado">
+
+        <label>Valor</label>
+       <input id="valor" type="number" placeholder="0,00">
+
+       <label>Categoria</label>
+
+<select id="categoria">
+
+    <option value="">Selecione...</option>
+
+    <option>Salário</option>
+    <option>Alimentação</option>
+    <option>Transporte</option>
+    <option>Moradia</option>
+    <option>Saúde</option>
+    <option>Educação</option>
+    <option>Lazer</option>
+    <option>Investimentos</option>
+    <option>Outros</option>
+
+</select>
+
+        <label>Tipo</label>
+
+      <select id="tipo">
+    <option>Receita</option>
+    <option>Despesa</option>
+</select>
+
+<label>Data</label>
+
+<input
+    id="data"
+    type="date">
+
+        <div class="acoes-modal">
+           <button type="button" class="btn-cancelar">Cancelar</button>
+
+           <button type="submit" class="btn-salvar">Salvar</button>
+
+            </div>
+
+            </form>
+    </div>
+
+</div>
+<script type="module" src="js/app.js"></script>
 
 </body>
 </html>

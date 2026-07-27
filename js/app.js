@@ -1,25 +1,81 @@
 // ==============================
-// ALVESO - PERSONAL FINANCE
+// Caltrack - Sua vida financeira sob controle
 // ==============================
 
-// Lista de transações
-const transacoes = [];
-transacoes.push({
-    descricao: "Salário",
-    valor: 5000,
-    tipo: "receita",
-    categoria: "Salário",
-    data: "13/07/2026"
+
+import { carregarTransacoes } from "./storage.js";
+import { atualizarCards } from "./dashboard.js";
+
+import {
+    listarTransacoes,
+    excluirTransacao,
+    salvarTransacao,
+    editarTransacao
+} from "./transacoes.js";
+
+import {
+    abrirFormulario,
+    fecharFormulario
+} from "./ui.js";
+
+
+import {
+    botaoNova,
+    modal,
+    botaoCancelar
+} from "./dom.js";
+
+
+window.excluirTransacao = excluirTransacao;
+
+window.editarTransacao = editarTransacao;
+
+// ==============================
+// Eventos
+// ==============================
+
+// Escuta o clique no botão
+
+botaoNova.addEventListener("click", abrirFormulario);
+
+botaoCancelar.addEventListener("click", fecharFormulario);
+
+const formulario = document.querySelector("#form-transacao");
+
+formulario.addEventListener("submit", (event) => {
+    event.preventDefault();
+    salvarTransacao();
 });
 
-transacoes.push({
-    descricao: "Supermercado",
-    valor: 380,
-    tipo: "despesa",
-    categoria: "Alimentação",
-    data: "13/07/2026"
+
+// Fechar modal com a tecla ESC
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape") {
+        fecharFormulario();
+    }
+
 });
-console.log(transacoes);
+
+// Fechar modal clicando fora dele
+
+modal.addEventListener("click", function (event) {
+
+    if (event.target === modal) {
+        fecharFormulario();
+    }
+});
+
+// ==============================
+// Inicialização
+// ==============================
+
+// Carregar dados ao iniciar o aplicativo
+carregarTransacoes();
+
+listarTransacoes();
+
+atualizarCards();
 
 // Inicialização dos ícones
 lucide.createIcons();

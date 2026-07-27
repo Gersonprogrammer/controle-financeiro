@@ -345,3 +345,98 @@ tbody td[colspan] {
     text-align: center;
     color: #64748b;
 }
+
+/* ==============================
+   MODAL
+============================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal.oculto {
+    display: none;
+}
+
+.modal-conteudo {
+    background: #ffffff;
+    width: 400px;
+    max-width: 90%;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.2);
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-conteudo h2{
+    margin-bottom: 10px;
+}
+
+.modal-conteudo label{
+    font-weight: 600;
+}
+
+.modal-conteudo input,
+.modal-conteudo select{
+    padding:10px;
+    border:1px solid #dcdcdc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+#form-transacao{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.acoes-modal{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:15px;
+}
+
+.btn-cancelar{
+    background:#d1d5db;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.btn-salvar{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.btn-cancelar:hover{
+    background:#bfc5cc;
+}
+
+.btn-salvar:hover{
+    background:#1d4ed8;
+}
+
+.icone-excluir {
+    cursor: pointer;
+    color: #6b7280;
+    transition: 0.2s;
+}
+
+.icone-excluir:hover {
+    color: #dc2626;
+    transform: scale(1.15);
+}
