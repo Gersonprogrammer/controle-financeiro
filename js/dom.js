@@ -1,5 +1,15 @@
 export const botaoNova = document.querySelector(".btn-nova");
 
+export const campoPesquisa = document.querySelector("#campo-pesquisa");
+
+export const filtroCategoria = document.querySelector("#filtro-categoria");
+
+export const filtroTipo = document.querySelector("#filtro-tipo");
+
+export const ordenacao = document.querySelector("#ordenacao");
+
+export const btnExportar = document.querySelector("#btn-exportar");
+
 export const modal = document.querySelector("#modal");
 
 export const botaoCancelar = document.querySelector(".btn-cancelar");

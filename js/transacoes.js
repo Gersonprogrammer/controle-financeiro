@@ -1,3 +1,5 @@
+
+import { atualizarInterface } from "./interface.js";
 import {
     transacoes,
     indiceEdicao,
@@ -22,11 +24,11 @@ import {
     fecharFormulario
 } from "./ui.js";
 
-export function listarTransacoes() {
+export function listarTransacoes(lista = transacoes) {
 
     corpoTabela.innerHTML = "";
 
-    transacoes.forEach((transacao, index) => {
+    lista.forEach((transacao, index) => {
 
         corpoTabela.innerHTML += `
             <tr>
@@ -60,12 +62,11 @@ export function listarTransacoes() {
 
 export function excluirTransacao(index) {
 
-    transacoes.splice(index, 1);
+     transacoes.splice(index, 1);
 
     salvarTransacoes();
 
-    listarTransacoes();
-    atualizarCards();
+    atualizarInterface();
 
 }
 
@@ -88,6 +89,7 @@ export function editarTransacao(index) {
     abrirFormulario();
 
 }
+
 export function salvarTransacao() {
 
     if (campoDescricao.value.trim() === "") {
@@ -113,8 +115,9 @@ export function salvarTransacao() {
         campoData.focus();
         return;
     }
+const [ano, mes, dia] = campoData.value.split("-");
 
-    const dataFormatada = new Date(campoData.value).toLocaleDateString("pt-BR");
+const dataFormatada = `${dia}/${mes}/${ano}`;
 
     const novaTransacao = {
         descricao: campoDescricao.value,
@@ -136,13 +139,6 @@ export function salvarTransacao() {
 
 }
 
-    salvarTransacoes();
-
-    listarTransacoes();
-    atualizarCards();
-
-    limparFormulario();
-
-    fecharFormulario();
+atualizarInterface();
 }
 

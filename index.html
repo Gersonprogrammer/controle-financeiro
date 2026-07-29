@@ -57,21 +57,60 @@
         <h3>Resumo Financeiro</h3>
     </div>
 
-    <div class="grafico-placeholder">
-        <p>📊 Gráfico Financeiro (em desenvolvimento)</p>
-    </div>
+   <div class="grafico-placeholder">
+
+    <canvas id="graficoFinanceiro"></canvas>
+
+</div>
 
 </section>
 
 <section class="transacoes">
 
-    <div class="transacoes-header">
-        <h3>Últimas Transações</h3>
+   <div class="transacoes-header">
 
-        <button class="btn-nova">
-            + Nova Transação
-        </button>
-    </div>
+    <h3>Últimas Transações</h3>
+
+  <input
+    type="text"
+    id="campo-pesquisa"
+    placeholder="Pesquisar...">
+
+<select id="filtro-categoria">
+    <option value="">Todas</option>
+    <option value="Alimentação">Alimentação</option>
+    <option value="Moradia">Moradia</option>
+    <option value="Transporte">Transporte</option>
+    <option value="Lazer">Lazer</option>
+    <option value="Saúde">Saúde</option>
+    <option value="Educação">Educação</option>
+    <option value="Trabalho">Trabalho</option>
+    <option value="Outros">Outros</option>
+</select>
+
+<select id="filtro-tipo">
+    <option value="">Todos</option>
+    <option value="receita">Receita</option>
+    <option value="despesa">Despesa</option>
+</select>
+
+<select id="ordenacao">
+    <option value="">Ordenar por</option>
+    <option value="data-desc">Mais recentes</option>
+    <option value="data-asc">Mais antigas</option>
+    <option value="valor-desc">Maior valor</option>
+    <option value="valor-asc">Menor valor</option>
+</select>
+
+<button class="btn-nova">
+        + Nova Transação
+    </button>
+
+    <button id="btn-exportar" class="btn-exportar">
+    Exportar CSV
+</button>
+
+</div>
 
     <table>
 
@@ -160,6 +199,7 @@
     </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module" src="js/app.js"></script>
 
 </body>
