@@ -26,9 +26,12 @@ import {
 
 export function listarTransacoes(lista = transacoes) {
 
+
     corpoTabela.innerHTML = "";
 
     lista.forEach((transacao, index) => {
+
+        const indiceOriginal = transacoes.indexOf(transacao);
 
         corpoTabela.innerHTML += `
             <tr>
@@ -42,13 +45,13 @@ export function listarTransacoes(lista = transacoes) {
     <i
         data-lucide="square-pen"
         class="icone-editar"
-        onclick="editarTransacao(${index})">
+        onclick="editarTransacao(${indiceOriginal})"
     </i>
 
     <i
         data-lucide="trash-2"
         class="icone-excluir"
-        onclick="excluirTransacao(${index})">
+        onclick="excluirTransacao(${indiceOriginal})"
     </i>
 </td>
             </tr>
@@ -139,6 +142,13 @@ const dataFormatada = `${dia}/${mes}/${ano}`;
 
 }
 
+salvarTransacoes();
+
 atualizarInterface();
+
+limparFormulario();
+
+fecharFormulario();
+
 }
 

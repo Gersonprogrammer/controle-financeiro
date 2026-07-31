@@ -184,20 +184,40 @@ main h2 {
     margin-bottom: 15px;
 }
 
+.graficos-container {
+
+    display: flex;
+
+    gap: 32px;
+
+    align-items: stretch;
+
+}
+
 .grafico-placeholder {
-    height: 300px;
+
+    flex: 1;
+
+    height: 320px;
+
     background: white;
+
     border-radius: 12px;
+
     border: 2px dashed #cbd5e1;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     color: #64748b;
+
     font-size: 18px;
 
     box-shadow: 0 2px 8px rgba(0,0,0,.08);
+
 }
 
 /* ==========================
