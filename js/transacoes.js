@@ -41,18 +41,20 @@ export function listarTransacoes(lista = transacoes) {
                 <td>${transacao.tipo}</td>
                 <td>R$ ${transacao.valor.toFixed(2)}</td>
 
-             <td>
+<td>
+
     <i
         data-lucide="square-pen"
         class="icone-editar"
-        onclick="editarTransacao(${indiceOriginal})"
+        onclick="editarTransacao(${indiceOriginal})">
     </i>
 
     <i
         data-lucide="trash-2"
         class="icone-excluir"
-        onclick="excluirTransacao(${indiceOriginal})"
+        onclick="excluirTransacao(${indiceOriginal})">
     </i>
+
 </td>
             </tr>
         `;
