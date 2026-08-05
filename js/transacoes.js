@@ -34,12 +34,27 @@ export function listarTransacoes(lista = transacoes) {
         const indiceOriginal = transacoes.indexOf(transacao);
 
         corpoTabela.innerHTML += `
-            <tr>
-                <td>${transacao.data || "-"}</td>
-                <td>${transacao.descricao}</td>
-                <td>${transacao.categoria || "-"}</td>
-                <td>${transacao.tipo}</td>
-                <td>R$ ${transacao.valor.toFixed(2)}</td>
+           <tr>
+
+    <td data-label="Data">
+        ${transacao.data || "-"}
+    </td>
+
+    <td data-label="Descrição">
+        ${transacao.descricao}
+    </td>
+
+    <td data-label="Categoria">
+        ${transacao.categoria || "-"}
+    </td>
+
+    <td data-label="Tipo">
+        ${transacao.tipo}
+    </td>
+
+    <td data-label="Valor">
+        R$ ${transacao.valor.toFixed(2)}
+    </td>
 
 <td>
 

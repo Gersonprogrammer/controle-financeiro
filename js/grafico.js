@@ -74,19 +74,20 @@ export function atualizarGrafico() {
 ]
 
         },
-
-   options: {
+options: {
 
     responsive: true,
 
-       animation: {
+    maintainAspectRatio: false,
+
+    animation: {
 
         duration: 800,
 
         easing: "easeOutQuart"
 
     },
-    
+
     plugins: {
 
         legend: {
@@ -175,21 +176,23 @@ const valores = Object.values(categorias);
     ]
 
 },
-        options: {
+   options: {
 
-            responsive: true,
+    responsive: true,
 
-            plugins: {
+    maintainAspectRatio: false,
 
-                legend: {
+    plugins: {
 
-                    display: false
+        legend: {
 
-                }
-
-            }
+            display: false
 
         }
+
+    }
+
+}
 
     });
 
