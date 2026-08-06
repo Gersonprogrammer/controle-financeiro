@@ -49,8 +49,14 @@ export function listarTransacoes(lista = transacoes) {
     </td>
 
     <td data-label="Tipo">
-        ${transacao.tipo}
-    </td>
+
+    <span class="badge ${transacao.tipo}">
+
+        ${transacao.tipo === "receita" ? "🟢 Receita" : "🔴 Despesa"}
+
+    </span>
+
+</td>
 
     <td data-label="Valor">
         R$ ${transacao.valor.toFixed(2)}

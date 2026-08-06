@@ -228,6 +228,47 @@ main h2 {
     margin-top: 30px;
 }
 
+.tabela-transacoes {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+.tabela-transacoes th,
+.tabela-transacoes td {
+
+    padding: 14px;
+
+    text-align: left;
+
+}
+
+.tabela-transacoes th {
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-weight: 600;
+
+    border-bottom: 2px solid #e2e8f0;
+
+}
+
+.tabela-transacoes tr {
+
+    border-bottom: 1px solid #e5e7eb;
+
+}
+
+.tabela-transacoes tbody tr:hover {
+
+    background: #f8fafc;
+
+}
+
 .transacoes-header {
     display: flex;
     justify-content: space-between;
@@ -486,13 +527,7 @@ tbody td[colspan] {
 
 }
 
-.transacoes-header {
 
-    flex-direction: column;
-
-    align-items: stretch;
-
-}
 
     .filtros {
 
@@ -552,8 +587,78 @@ tbody td[colspan] {
 
     display: block;
 
+
 }
 
+
+.tabela-transacoes tbody tr {
+
+    background: white;
+
+    margin-bottom: 16px;
+
+    border-radius: 12px;
+
+    padding: 12px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+}
+
+.tabela-transacoes tbody tr {
+
+    background: white;
+
+    margin-bottom: 16px;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+}
+
+.tabela-transacoes td {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 10px 8px;
+
+}
+
+.tabela-transacoes td::before {
+
+    content: attr(data-label);
+
+    font-weight: bold;
+
+    color: #64748b;
+
+}
+
+.tabela-transacoes td:last-child {
+
+    justify-content: flex-end;
+
+    gap: 20px;
+
+    padding-top: 20px;
+
+
+
+}
+
+
+
+
+.tabela-transacoes td:last-child::before {
+
+    display: none;
+
+}
 aside {
 
     width: 100%;
@@ -599,7 +704,41 @@ main {
 
 }
 
+.badge {
 
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+}
+
+.badge.receita {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+    border: 1px solid #86efac;
+
+}
+
+.badge.despesa {
+
+    background: #fee2e2;
+
+    color: #991b1b;
+
+    border: 1px solid #fca5a5;
+
+}
 
 
 
