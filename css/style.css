@@ -468,6 +468,42 @@ tbody td[colspan] {
 
 @media (max-width: 768px) {
 
+    .transacoes-header {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+
+}
+
+    .filtros input,
+.filtros select,
+.filtros button {
+
+    width: 100%;
+
+}
+
+.transacoes-header {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+}
+
+    .filtros {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    row-gap: 10px;
+
+}
+
         .graficos-container {
 
     flex-direction: column;
@@ -562,6 +598,9 @@ main {
     display: flex;
 
 }
+
+
+
 
 
 
