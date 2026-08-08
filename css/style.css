@@ -507,7 +507,56 @@ tbody td[colspan] {
    RESPONSIVIDADE
 ========================================== */
 
+
+.btn-menu {
+    display: none;
+}
+
+
 @media (max-width: 768px) {
+
+
+.btn-menu {
+    display: block;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+       
+
+
+.sidebar {
+
+   position: absolute;
+
+    top: 75;
+
+    left: -260px;
+
+    width: 260px;
+
+   height: calc(100vh - 75px);
+
+    background: white;
+
+    z-index: 1000;
+
+    transition: 0.3s;
+
+     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+
+}
+
+.sidebar.ativo {
+
+    left: 0;
+
+}
+
+
 
     .transacoes-header {
 
@@ -659,6 +708,8 @@ tbody td[colspan] {
     display: none;
 
 }
+
+
 aside {
 
     width: 100%;

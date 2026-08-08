@@ -139,6 +139,37 @@ botaoCancelar.addEventListener("click", fecharFormulario);
 
 btnExportar.addEventListener("click", exportarCSV);
 
+const btnMenu = document.querySelector(".btn-menu");
+const sidebar = document.querySelector(".sidebar");
+
+// Menu mobile - Sidebar
+
+if (btnMenu && sidebar) {
+
+    btnMenu.addEventListener("click", () => {
+
+        sidebar.classList.toggle("ativo");
+
+    });
+
+    document.addEventListener("click", (event) => {
+
+        if (
+            sidebar.classList.contains("ativo") &&
+            !sidebar.contains(event.target) &&
+            !btnMenu.contains(event.target)
+        ) {
+            sidebar.classList.remove("ativo");
+        }
+
+    });
+
+}
+
+
+
+
+
 const formulario = document.querySelector("#form-transacao");
 
 formulario.addEventListener("submit", (event) => {
