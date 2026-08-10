@@ -31,7 +31,7 @@ import {
      filtroTipo,
       ordenacao,
          btnExportar,
- 
+          campoValor
 } from "./dom.js";
 
 
@@ -141,6 +141,27 @@ btnExportar.addEventListener("click", exportarCSV);
 
 const btnMenu = document.querySelector(".btn-menu");
 const sidebar = document.querySelector(".sidebar");
+
+campoValor.addEventListener("input", () => {
+
+    let valor = campoValor.value.replace(/\D/g, "");
+
+    if (valor === "") {
+        campoValor.value = "";
+        return;
+    }
+
+    valor = (Number(valor) / 100).toFixed(2);
+
+    const partes = valor.split(".");
+    const inteiro = partes[0];
+    const decimal = partes[1];
+
+    const inteiroFormatado = Number(inteiro).toLocaleString("pt-BR");
+
+    campoValor.value = `${inteiroFormatado},${decimal}`;
+
+});
 
 // Menu mobile - Sidebar
 

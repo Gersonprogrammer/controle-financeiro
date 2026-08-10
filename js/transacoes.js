@@ -59,8 +59,11 @@ export function listarTransacoes(lista = transacoes) {
 </td>
 
     <td data-label="Valor">
-        R$ ${transacao.valor.toFixed(2)}
-    </td>
+    ${transacao.valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })}
+</td>
 
 <td>
 
@@ -147,7 +150,11 @@ const dataFormatada = `${dia}/${mes}/${ano}`;
 
     const novaTransacao = {
         descricao: campoDescricao.value,
-        valor: Number(campoValor.value),
+        valor: Number(
+    campoValor.value
+        .replace(/\./g, "")
+        .replace(",", ".")
+),
         categoria: campoCategoria.value,
         tipo: campoTipo.value.toLowerCase(),
         data: dataFormatada
