@@ -1,6 +1,6 @@
 # 💰 Controle Financeiro
 
-Aplicação web para controle de finanças pessoais, desenvolvida como projeto de portfólio para praticar desenvolvimento web, integração com APIs e banco de dados PostgreSQL utilizando Supabase.
+Aplicação web e mobile para controle de finanças pessoais, desenvolvida como projeto de portfólio para praticar desenvolvimento web, integração com APIs e banco de dados PostgreSQL utilizando Supabase.
 
 ---
 
