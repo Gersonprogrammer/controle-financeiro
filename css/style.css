@@ -269,12 +269,70 @@ main h2 {
 
 }
 
+
 .transacoes-header {
+
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
     margin-bottom: 15px;
+
 }
+
+.periodo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.periodo label {
+
+    font-size: 14px;
+
+    color: #475569;
+
+    font-weight: 600;
+
+}
+
+.periodo select {
+
+    padding: 8px 10px;
+
+    border: 1px solid #dcdcdc;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 14px;
+
+}
+
+.transacoes-filtros {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+}
+
+
 
 .btn-nova {
     background: #1E3A8A;
@@ -357,9 +415,29 @@ tbody td[colspan] {
 
 .transacoes-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-bottom: 15px;
+}
+.periodo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.periodo label {
+    font-size: 14px;
+    color: #475569;
+    font-weight: 600;
+}
+
+.periodo select {
+    padding: 8px 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
 }
 
 .btn-nova {

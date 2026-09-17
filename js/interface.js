@@ -10,4 +10,6 @@ export function atualizarInterface() {
 
     atualizarGrafico();
 
+    window.dispatchEvent(new Event("interfaceAtualizada"));
+
 }

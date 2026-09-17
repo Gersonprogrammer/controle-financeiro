@@ -28,11 +28,15 @@ import {
     botaoCancelar,
     campoPesquisa,
     filtroCategoria,
-     filtroTipo,
-      ordenacao,
-         btnExportar,
-          campoValor
+    filtroTipo,
+    ordenacao,
+    btnExportar,
+    campoValor,
+    filtroMes,
+    filtroAno
 } from "./dom.js";
+
+
 
 
 
@@ -49,7 +53,12 @@ function aplicarFiltros() {
     
     const tipo = filtroTipo.value;
 
+
     const ordem = ordenacao.value;
+
+    const mes = filtroMes.value;
+
+const ano = filtroAno.value;
 
     const listaFiltrada = transacoes.filter(function (transacao) {
 
@@ -66,12 +75,25 @@ const correspondeTipo =
     tipo === "" ||
     transacao.tipo === tipo;
 
+    const correspondeMes =
+    mes === "" ||
+    transacao.mes === Number(mes);
+
+const correspondeAno =
+    ano === "" ||
+    transacao.ano === Number(ano);
+
+ 
+
 return (
     correspondePesquisa &&
     correspondeCategoria &&
-    correspondeTipo
+    correspondeTipo &&
+    correspondeMes &&
+    correspondeAno
 );
-    
+
+
     });
 if (ordem === "valor-desc") {
 
@@ -113,6 +135,10 @@ if (ordem === "data-asc") {
 
 listarTransacoes(listaFiltrada);
 
+atualizarCards(listaFiltrada);
+
+atualizarGrafico(listaFiltrada);
+
 }
 
 
@@ -134,6 +160,12 @@ filtroCategoria.addEventListener("change", aplicarFiltros);
 filtroTipo.addEventListener("change", aplicarFiltros);
 
 ordenacao.addEventListener("change", aplicarFiltros);
+
+filtroMes.addEventListener("change", aplicarFiltros);
+
+filtroAno.addEventListener("change", aplicarFiltros);
+
+window.addEventListener("interfaceAtualizada", aplicarFiltros);
 
 botaoCancelar.addEventListener("click", fecharFormulario);
 
@@ -223,8 +255,6 @@ modal.addEventListener("click", function (event) {
 
 // Carregar dados ao iniciar o aplicativo
 carregarTransacoes();
-
 atualizarInterface();
-
-// Inicialização dos ícones
+aplicarFiltros();
 lucide.createIcons();

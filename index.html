@@ -77,79 +77,118 @@
 
 </section>
 
+
+
 <section class="transacoes">
 
-   <div class="transacoes-header">
+    <div class="transacoes-header">
 
-    <h3>Últimas Transações</h3>
+        <h3>Últimas Transações</h3>
 
-  <input
-    type="text"
-    id="campo-pesquisa"
-    placeholder="Pesquisar...">
+        <!-- Filtro de período -->
+        <div class="periodo">
 
-<select id="filtro-categoria">
-    <option value="">Todas</option>
-    <option value="Alimentação">Alimentação</option>
-    <option value="Moradia">Moradia</option>
-    <option value="Transporte">Transporte</option>
-    <option value="Lazer">Lazer</option>
-    <option value="Saúde">Saúde</option>
-    <option value="Educação">Educação</option>
-    <option value="Trabalho">Trabalho</option>
-    <option value="Outros">Outros</option>
-</select>
+            <label for="filtro-mes">Mês:</label>
 
-<select id="filtro-tipo">
-    <option value="">Todos</option>
-    <option value="receita">Receita</option>
-    <option value="despesa">Despesa</option>
-</select>
+            <select id="filtro-mes">
+                <option value="">Todos</option>
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Março</option>
+                <option value="4">Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+            </select>
 
-<select id="ordenacao">
-    <option value="">Ordenar por</option>
-    <option value="data-desc">Mais recentes</option>
-    <option value="data-asc">Mais antigas</option>
-    <option value="valor-desc">Maior valor</option>
-    <option value="valor-asc">Menor valor</option>
-</select>
+            <label for="filtro-ano">Ano:</label>
 
-<button class="btn-nova">
-        + Nova Transação
-    </button>
+            <select id="filtro-ano">
+                <option value="">Todos</option>
+                <option value="2026">2026</option>
+            </select>
 
-    <button id="btn-exportar" class="btn-exportar">
-    Exportar CSV
-</button>
+        </div>
 
-</div>
+    </div>
+
+
+    <!-- Filtros e ações da tabela -->
+    <div class="transacoes-filtros">
+
+        <input
+            type="text"
+            id="campo-pesquisa"
+            placeholder="Pesquisar...">
+
+        <select id="filtro-categoria">
+            <option value="">Todas</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Moradia">Moradia</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Educação">Educação</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Outros">Outros</option>
+        </select>
+
+        <select id="filtro-tipo">
+            <option value="">Todos</option>
+            <option value="receita">Receita</option>
+            <option value="despesa">Despesa</option>
+        </select>
+
+        <select id="ordenacao">
+            <option value="">Ordenar por</option>
+            <option value="data-desc">Mais recentes</option>
+            <option value="data-asc">Mais antigas</option>
+            <option value="valor-desc">Maior valor</option>
+            <option value="valor-asc">Menor valor</option>
+        </select>
+
+        <button class="btn-nova">
+            + Nova Transação
+        </button>
+
+        <button id="btn-exportar" class="btn-exportar">
+            Exportar CSV
+        </button>
+
+    </div>
+
 
     <table class="tabela-transacoes">
 
         <thead>
 
-          <tr>
-    <th>Data</th>
-    <th>Descrição</th>
-    <th>Categoria</th>
-    <th>Tipo</th>
-    <th>Valor</th>
-    <th>Ações</th>
-</tr>
+            <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Ações</th>
+            </tr>
 
         </thead>
 
-   <tbody id="corpo-tabela">
-
-</tbody>
+        <tbody id="corpo-tabela">
+        </tbody>
 
     </table>
 
 </section>
 
+
 </main>
 
-</div>
+
 
 <script src="https://unpkg.com/lucide@latest"></script>
 

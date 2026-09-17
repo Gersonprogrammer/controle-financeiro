@@ -5,12 +5,12 @@ import {
     cardDespesas
 } from "./dom.js";
 
-export function atualizarCards() {
+export function atualizarCards(lista = transacoes) {
 
     let totalReceitas = 0;
     let totalDespesas = 0;
 
-    transacoes.forEach(transacao => {
+    lista.forEach(transacao => {
 
         if (transacao.tipo === "receita") {
             totalReceitas += transacao.valor;

@@ -20,6 +20,10 @@ export const campoValor = document.querySelector("#valor");
 
 export const campoTipo = document.querySelector("#tipo");
 
+export const filtroMes = document.querySelector("#filtro-mes");
+
+export const filtroAno = document.querySelector("#filtro-ano");
+
 export const campoCategoria = document.querySelector("#categoria");
 
 export const campoData = document.querySelector("#data");

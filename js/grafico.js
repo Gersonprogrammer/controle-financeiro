@@ -3,7 +3,7 @@ import { transacoes } from "./state.js";
 let graficoFinanceiro;
 let graficoCategorias;
 
-export function atualizarGrafico() {
+export function atualizarGrafico(lista = transacoes) {
 
     const canvas = document.querySelector("#graficoFinanceiro");
 
@@ -16,7 +16,7 @@ export function atualizarGrafico() {
     let totalDespesas = 0;
 
 
-    transacoes.forEach((transacao) => {
+    lista.forEach((transacao) => {
 
         if (transacao.tipo === "receita") {
 
@@ -121,14 +121,14 @@ options: {
 
     });
 
-    atualizarGraficoCategorias();
+    atualizarGraficoCategorias(lista);
 
 }
 
 
 
 
-function atualizarGraficoCategorias() {
+function atualizarGraficoCategorias(lista = transacoes) {
 
     const canvas = document.querySelector("#graficoCategorias");
 
@@ -141,7 +141,7 @@ function atualizarGraficoCategorias() {
     }
 const categorias = {};
 
-transacoes.forEach((transacao) => {
+lista.forEach((transacao) => {
 
     if (transacao.tipo !== "despesa") return;
 

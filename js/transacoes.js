@@ -157,7 +157,10 @@ const dataFormatada = `${dia}/${mes}/${ano}`;
 ),
         categoria: campoCategoria.value,
         tipo: campoTipo.value.toLowerCase(),
-        data: dataFormatada
+        data: dataFormatada,
+        mes: Number(mes),
+    ano: Number(ano)
+        
     };
 
     if (indiceEdicao === null) {
