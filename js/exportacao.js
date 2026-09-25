@@ -1,10 +1,10 @@
-import { transacoes } from "./state.js";
+import { transacoesFiltradas } from "./state.js";
 
 export function exportarCSV() {
 
     let csv = "Data,Descrição,Categoria,Tipo,Valor\n";
 
-    transacoes.forEach((transacao) => {
+    transacoesFiltradas.forEach((transacao) => {
 
         csv += `${transacao.data},${transacao.descricao},${transacao.categoria},${transacao.tipo},${transacao.valor}\n`;
 

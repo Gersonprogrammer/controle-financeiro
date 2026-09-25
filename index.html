@@ -26,9 +26,9 @@
     <aside class="sidebar">
         <nav>
             <ul>
-                <li>Dashboard</li>
-                <li>Transações</li>
-                <li>Metas</li>
+               <li id="menu-dashboard">Dashboard</li>
+<li id="menu-transacoes">Transações</li>
+                <li id="menu-metas">Metas</li>
                 <li>Relatórios</li>
                 <li>Configurações</li>
             </ul>
@@ -157,7 +157,7 @@
         </button>
 
         <button id="btn-exportar" class="btn-exportar">
-            Exportar CSV
+            Exportar Tabela
         </button>
 
     </div>
@@ -186,8 +186,158 @@
 </section>
 
 
+<!-- ==============================
+     SEÇÃO METAS
+============================== -->
+<!-- ==============================
+     SEÇÃO METAS
+============================== -->
+
+<section id="secao-metas" class="secao-app oculto">
+
+    <div class="metas-header">
+
+        <div>
+            <h2>Metas</h2>
+            <p>Acompanhe seus objetivos financeiros.</p>
+        </div>
+
+        <button id="btn-nova-meta" class="btn-nova-meta">
+            + Nova Meta
+        </button>
+
+    </div>
+
+    <div id="lista-metas" class="lista-metas">
+    </div>
+
+</section>
+
+
+
 </main>
 
+<!-- ==============================
+     MODAL NOVA META
+============================== -->
+
+<div id="modal-meta" class="modal oculto">
+
+    <div class="modal-conteudo">
+
+        <h2>Nova Meta</h2>
+
+        <form id="form-meta">
+
+            <label for="meta-nome">
+                Nome da meta
+            </label>
+
+            <input
+                type="text"
+                id="meta-nome"
+                placeholder="Ex.: Viagem em família"
+                required
+            >
+
+
+            <label for="meta-objetivo">
+                Valor objetivo
+            </label>
+
+            <input
+                type="text"
+                id="meta-objetivo"
+                placeholder="R$ 5.000,00"
+                required
+            >
+
+
+            <label for="meta-inicial">
+                Valor inicial
+            </label>
+
+            <input
+                type="text"
+                id="meta-inicial"
+                placeholder="R$ 0,00"
+            >
+
+
+            <div class="prazo-meta">
+
+                <div>
+
+                    <label for="meta-mes">
+                        Mês do prazo
+                    </label>
+
+                    <select id="meta-mes" required>
+
+                        <option value="">Selecione</option>
+
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label for="meta-ano">
+                        Ano do prazo
+                    </label>
+
+                    <input
+                        type="number"
+                        id="meta-ano"
+                        min="2026"
+                        max="2100"
+                        value="2026"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="acoes-modal">
+
+                <button
+                    type="button"
+                    id="btn-cancelar-meta"
+                    class="btn-cancelar"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-salvar"
+                >
+                    Salvar Meta
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -240,7 +390,9 @@
     type="date">
 
         <div class="acoes-modal">
-           <button type="button" class="btn-cancelar">Cancelar</button>
+           <button type="button" 
+           id="btn-cancelar-transacao"
+           class="btn-cancelar">Cancelar</button>
 
            <button type="submit" class="btn-salvar">Salvar</button>
 
@@ -250,8 +402,243 @@
     </div>
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js">
+
+</script>
+
+<!-- ==============================
+     MODAL - NOVA META
+     ============================== -->
+
+<div id="modal-meta" class="modal oculto">
+
+    <div class="modal-conteudo">
+
+        <h2>Nova Meta</h2>
+
+        <form id="form-meta">
+
+            <div class="campo">
+
+                <label for="meta-nome">
+                    Nome da meta
+                </label>
+
+                <input
+                    type="text"
+                    id="meta-nome"
+                    placeholder="Ex: Reserva de emergência"
+                    required>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="meta-descricao">
+                    Descrição
+                </label>
+
+                <input
+                    type="text"
+                    id="meta-descricao"
+                    placeholder="Descreva seu objetivo">
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="meta-valor">
+                    Valor objetivo
+                </label>
+
+                <input
+                    type="text"
+                    id="meta-valor"
+                    placeholder="R$ 5.000,00"
+                    required>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="meta-valor-atual">
+                    Valor inicial
+                </label>
+
+                <input
+                    type="text"
+                    id="meta-valor-atual"
+                    placeholder="R$ 0,00">
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="meta-prazo">
+                    Prazo
+                </label>
+
+                <input
+                    type="date"
+                    id="meta-prazo">
+
+            </div>
+
+
+            <div class="acoes-modal">
+
+                <button
+                    type="button"
+                    id="btn-cancelar-meta"
+                    class="btn-cancelar">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    id="btn-salvar-meta"
+                    class="btn-salvar">
+                    Salvar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ==============================
+     MODAL NOVA META
+============================== -->
+
+<div id="modal-meta" class="modal oculto">
+
+
+<div class="modal-conteudo">
+
+    <h2>Nova Meta</h2>
+
+    <form id="form-meta">
+
+        <label for="meta-nome">
+            Nome da meta
+        </label>
+
+        <input
+            type="text"
+            id="meta-nome"
+            placeholder="Ex.: Viagem em família"
+            required
+        >
+
+        <label for="meta-objetivo">
+            Valor objetivo
+        </label>
+
+        <input
+            type="text"
+            id="meta-objetivo"
+            placeholder="R$ 5.000,00"
+            required
+        >
+
+        <label for="meta-inicial">
+            Valor inicial
+        </label>
+
+        <input
+            type="text"
+            id="meta-inicial"
+            placeholder="R$ 0,00"
+        >
+
+        <div class="prazo-meta">
+
+            <div>
+
+                <label for="meta-mes">
+                    Mês do prazo
+                </label>
+
+                <select id="meta-mes" required>
+
+                    <option value="">Selecione</option>
+
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+
+                </select>
+
+            </div>
+
+            <div>
+
+                <label for="meta-ano">
+                    Ano do prazo
+                </label>
+
+                <input
+                    type="number"
+                    id="meta-ano"
+                    min="2026"
+                    max="2100"
+                    value="2026"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+        <div class="acoes-modal">
+
+            <button
+                type="button"
+                id="btn-cancelar-meta"
+                class="btn-cancelar"
+            >
+                Cancelar
+            </button>
+
+            <button
+                type="submit"
+                class="btn-salvar"
+            >
+                Salvar Meta
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+</div>
+
+
 <script type="module" src="js/app.js"></script>
 
 </body>
+
 </html>

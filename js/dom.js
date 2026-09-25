@@ -12,7 +12,7 @@ export const btnExportar = document.querySelector("#btn-exportar");
 
 export const modal = document.querySelector("#modal");
 
-export const botaoCancelar = document.querySelector(".btn-cancelar");
+export const botaoCancelar = document.querySelector("#btn-cancelar-transacao");
 
 export const campoDescricao = document.querySelector("#descricao");
 
@@ -37,3 +37,24 @@ export const cardDespesas = document.querySelector("#total-despesas");
 export const botaoSalvar = document.querySelector(".btn-salvar");
 
 export const corpoTabela = document.querySelector("#corpo-tabela");
+
+export const botaoNovaMeta = document.querySelector("#btn-nova-meta");
+
+export const modalMeta = document.querySelector("#modal-meta");
+
+export const botaoCancelarMeta = document.querySelector("#btn-cancelar-meta");
+
+export const formularioMeta = document.querySelector("#form-meta");
+
+export const campoMetaNome = document.querySelector("#meta-nome");
+
+export const campoMetaObjetivo = document.querySelector("#meta-objetivo");
+
+export const campoMetaInicial = document.querySelector("#meta-inicial");
+
+export const campoMetaMes = document.querySelector("#meta-mes");
+
+export const campoMetaAno = document.querySelector("#meta-ano");
+
+export const listaMetas = document.querySelector("#lista-metas");
+

@@ -5,9 +5,20 @@
 import { atualizarInterface } from "./interface.js";
 import { atualizarGrafico } from "./grafico.js";
 import { exportarCSV } from "./exportacao.js";
-import { carregarTransacoes } from "./storage.js";
+import { carregarTransacoes, carregarMetas } from "./storage.js";
 import { atualizarCards } from "./dashboard.js";
-import { transacoes } from "./state.js";
+import { transacoes, transacoesFiltradas } from "./state.js";
+
+
+import {
+    criarMeta,
+    listarMetas,
+    excluirMeta,
+    editarMeta,
+    prepararNovaMeta
+} from "./metas.js";
+
+
 
 import {
     listarTransacoes,
@@ -21,7 +32,6 @@ import {
     fecharFormulario
 } from "./ui.js";
 
-
 import {
     botaoNova,
     modal,
@@ -33,7 +43,16 @@ import {
     btnExportar,
     campoValor,
     filtroMes,
-    filtroAno
+    filtroAno,
+    botaoNovaMeta,
+    modalMeta,
+    botaoCancelarMeta,
+    formularioMeta,
+campoMetaNome,
+campoMetaObjetivo,
+campoMetaInicial,
+campoMetaMes,
+campoMetaAno
 } from "./dom.js";
 
 
@@ -43,6 +62,11 @@ import {
 window.excluirTransacao = excluirTransacao;
 
 window.editarTransacao = editarTransacao;
+
+window.excluirMeta = excluirMeta;
+
+window.editarMeta = editarMeta;
+
 
 
 function aplicarFiltros() {
@@ -95,7 +119,11 @@ return (
 
 
     });
+
+
 if (ordem === "valor-desc") {
+
+
 
     listaFiltrada.sort((a, b) => b.valor - a.valor);
 
@@ -133,6 +161,11 @@ if (ordem === "data-asc") {
 
 }
 
+
+transacoesFiltradas.length = 0;
+transacoesFiltradas.push(...listaFiltrada);
+
+
 listarTransacoes(listaFiltrada);
 
 atualizarCards(listaFiltrada);
@@ -148,7 +181,42 @@ atualizarGrafico(listaFiltrada);
 
 // Escuta o clique no botão
 
+function mostrarNotificacao(mensagem) {
+
+    const notificacao = document.createElement("div");
+
+    notificacao.className = "notificacao";
+
+    notificacao.textContent = mensagem;
+
+    document.body.appendChild(notificacao);
+
+    setTimeout(() => {
+        notificacao.classList.add("visivel");
+    }, 10);
+
+    setTimeout(() => {
+        notificacao.classList.remove("visivel");
+
+        setTimeout(() => {
+            notificacao.remove();
+        }, 300);
+
+    }, 2500);
+}
+
 botaoNova.addEventListener("click", abrirFormulario);
+
+botaoNovaMeta.addEventListener("click", () => {
+
+    prepararNovaMeta();
+
+});
+
+
+botaoCancelarMeta.addEventListener("click", () => {
+    modalMeta.classList.add("oculto");
+});
 
 
 
@@ -173,6 +241,56 @@ btnExportar.addEventListener("click", exportarCSV);
 
 const btnMenu = document.querySelector(".btn-menu");
 const sidebar = document.querySelector(".sidebar");
+
+const menuMetas = document.querySelector("#menu-metas");
+const secaoMetas = document.querySelector("#secao-metas");
+
+console.log("menuMetas:", menuMetas);
+console.log("secaoMetas:", secaoMetas);
+
+const menuDashboard = document.querySelector("#menu-dashboard");
+const menuTransacoes = document.querySelector("#menu-transacoes");
+
+const secaoDashboard = document.querySelector(".cards");
+const secaoTransacoes = document.querySelector(".transacoes");
+
+const secaoGrafico = document.querySelector(".grafico");
+
+
+function mostrarSecao(secao) {
+
+    secaoDashboard.classList.add("oculto");
+    secaoGrafico.classList.add("oculto");
+    secaoTransacoes.classList.add("oculto");
+    secaoMetas.classList.add("oculto");
+
+    secao.classList.remove("oculto");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+menuMetas.addEventListener("click", () => {
+    mostrarSecao(secaoMetas);
+});
+
+menuDashboard.addEventListener("click", () => {
+
+    mostrarSecao(secaoDashboard);
+
+    secaoGrafico.classList.remove("oculto");
+
+});
+
+menuTransacoes.addEventListener("click", () => {
+    mostrarSecao(secaoTransacoes);
+});
+
+
+
+
 
 campoValor.addEventListener("input", () => {
 
@@ -230,6 +348,52 @@ formulario.addEventListener("submit", (event) => {
     salvarTransacao();
 });
 
+formularioMeta.addEventListener("submit", (event) => {
+
+    event.preventDefault();
+
+    const nome = campoMetaNome.value.trim();
+
+const valorObjetivo = Number(
+    campoMetaObjetivo.value
+        .replace("R$", "")
+        .replace(/\s/g, "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+);
+const valorAtual = campoMetaInicial.value === ""
+    ? 0
+    : Number(
+        campoMetaInicial.value
+            .replace("R$", "")
+            .replace(/\s/g, "")
+            .replace(/\./g, "")
+            .replace(",", ".")
+    );
+
+    const prazoMes = Number(campoMetaMes.value);
+
+    const prazoAno = Number(campoMetaAno.value);
+
+    criarMeta({
+        nome,
+        valorObjetivo,
+        valorAtual,
+        prazoMes,
+        prazoAno
+    });
+
+    listarMetas();
+
+    formularioMeta.reset();
+
+    campoMetaAno.value = new Date().getFullYear();
+
+    modalMeta.classList.add("oculto");
+
+    mostrarNotificacao("Meta criada com sucesso!");
+    
+});
 
 // Fechar modal com a tecla ESC
 document.addEventListener("keydown", function (event) {
@@ -255,6 +419,10 @@ modal.addEventListener("click", function (event) {
 
 // Carregar dados ao iniciar o aplicativo
 carregarTransacoes();
+carregarMetas();
+
 atualizarInterface();
 aplicarFiltros();
+listarMetas();
+
 lucide.createIcons();

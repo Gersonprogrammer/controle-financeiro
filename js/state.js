@@ -9,3 +9,7 @@ export function definirIndiceEdicao(indice) {
 export function limparIndiceEdicao() {
     indiceEdicao = null;
 }
+export let metas = [];
+
+export let transacoesFiltradas = [];
+
