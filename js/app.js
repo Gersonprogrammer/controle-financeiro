@@ -304,7 +304,13 @@ function mostrarSecao(secao) {
 }
 
 menuMetas.addEventListener("click", () => {
+
     mostrarSecao(secaoMetas);
+
+    if (sidebar) {
+        sidebar.classList.remove("ativo");
+    }
+
 });
 
 menuDashboard.addEventListener("click", () => {
@@ -313,12 +319,21 @@ menuDashboard.addEventListener("click", () => {
 
     secaoGrafico.classList.remove("oculto");
 
+    if (sidebar) {
+        sidebar.classList.remove("ativo");
+    }
+
 });
 
 menuTransacoes.addEventListener("click", () => {
-    mostrarSecao(secaoTransacoes);
-});
 
+    mostrarSecao(secaoTransacoes);
+
+    if (sidebar) {
+        sidebar.classList.remove("ativo");
+    }
+
+});
 
 
 
