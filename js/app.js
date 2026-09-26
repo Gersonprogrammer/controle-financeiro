@@ -205,6 +205,37 @@ function mostrarNotificacao(mensagem) {
     }, 2500);
 }
 
+function formatarValorMeta(campo) {
+
+    let valor = campo.value.replace(/\D/g, "");
+
+    if (valor === "") {
+        campo.value = "";
+        return;
+    }
+
+    valor = Number(valor) / 100;
+
+    campo.value = valor.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+}
+
+campoMetaObjetivo.addEventListener("input", () => {
+
+    formatarValorMeta(campoMetaObjetivo);
+
+});
+
+campoMetaInicial.addEventListener("input", () => {
+
+    formatarValorMeta(campoMetaInicial);
+
+});
+
+
 botaoNova.addEventListener("click", abrirFormulario);
 
 botaoNovaMeta.addEventListener("click", () => {
