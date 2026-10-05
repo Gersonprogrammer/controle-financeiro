@@ -1082,3 +1082,192 @@ main {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ==============================
+   CONFIGURAÇÕES
+============================== */
+
+.configuracoes-header {
+    margin-bottom: 25px;
+}
+
+.configuracoes-header h2 {
+    margin-bottom: 5px;
+}
+
+.configuracoes-header p {
+    margin: 0;
+}
+
+.configuracoes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.configuracao-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.configuracao-info h3 {
+    margin: 0 0 5px;
+}
+
+.configuracao-info p {
+    margin: 0;
+}
+
+.configuracao-opcao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.configuracao-opcao select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+/* ==============================
+   TEMA ESCURO
+============================== */
+
+body.tema-escuro {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+body.tema-escuro .configuracao-card {
+    background-color: #2a2a2a;
+}
+
+body.tema-escuro .configuracao-info p,
+body.tema-escuro .configuracoes-header p {
+    color: #cccccc;
+}
+
+/* ==============================
+   TEMA ESCURO - SUPERFÍCIES
+============================== */
+
+body.tema-escuro aside,
+body.tema-escuro .sidebar {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+body.tema-escuro nav li:hover {
+    background-color: #334155;
+}
+
+body.tema-escuro .card,
+body.tema-escuro .grafico-placeholder,
+body.tema-escuro table,
+body.tema-escuro .meta-card {
+    background-color: #2a2a2a;
+}
+
+body.tema-escuro .card h3,
+body.tema-escuro .periodo label,
+body.tema-escuro .meta-card-header p,
+body.tema-escuro .meta-valores span {
+    color: #cbd5e1;
+}
+
+body.tema-escuro .grafico-placeholder {
+    border-color: #475569;
+    color: #cbd5e1;
+}
+
+body.tema-escuro .tabela-transacoes th {
+    background-color: #334155;
+    color: #e2e8f0;
+    border-bottom-color: #475569;
+}
+
+body.tema-escuro .tabela-transacoes tbody tr {
+    background-color: #2a2a2a;
+    border-bottom-color: #475569;
+}
+
+body.tema-escuro .tabela-transacoes tbody tr:hover {
+    background-color: #334155;
+}
+
+/* ==============================
+   TEMA ESCURO - FILTROS
+============================== */
+
+body.tema-escuro .periodo select,
+body.tema-escuro .transacoes-filtros input,
+body.tema-escuro .transacoes-filtros select {
+    background-color: #2a2a2a;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+
+body.tema-escuro .periodo select option,
+body.tema-escuro .transacoes-filtros select option {
+    background-color: #2a2a2a;
+    color: #e2e8f0;
+}
+
+body.tema-escuro .transacoes-filtros input::placeholder {
+    color: #94a3b8;
+}
+
+/* ==============================
+   TEMA ESCURO - MODAL TRANSAÇÃO
+============================== */
+
+body.tema-escuro .modal-conteudo {
+    background-color: #2a2a2a;
+    color: #e2e8f0;
+}
+
+body.tema-escuro .modal-conteudo h2,
+body.tema-escuro .modal-conteudo label {
+    color: #e2e8f0;
+}
+
+body.tema-escuro .modal-conteudo input,
+body.tema-escuro .modal-conteudo select {
+    background-color: #1e1e1e;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+
+body.tema-escuro .modal-conteudo input::placeholder {
+    color: #94a3b8;
+}
+
+body.tema-escuro .modal-conteudo select option {
+    background-color: #1e1e1e;
+    color: #e2e8f0;
+}
+
+/* Botão de limpeza de dados */
+
+.btn-excluir-dados {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #dc2626;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-excluir-dados:hover {
+    background-color: #b91c1c;
+}

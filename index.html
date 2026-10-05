@@ -29,8 +29,8 @@
                <li id="menu-dashboard">Dashboard</li>
 <li id="menu-transacoes">Transações</li>
                 <li id="menu-metas">Metas</li>
+                <li id="menu-configuracoes">Configurações</li>
                 <li>Relatórios</li>
-                <li>Configurações</li>
             </ul>
         </nav>
     </aside>
@@ -189,9 +189,6 @@
 <!-- ==============================
      SEÇÃO METAS
 ============================== -->
-<!-- ==============================
-     SEÇÃO METAS
-============================== -->
 
 <section id="secao-metas" class="secao-app oculto">
 
@@ -213,7 +210,51 @@
 
 </section>
 
+<section id="secao-configuracoes" class="secao-app oculto">
 
+    <div class="configuracoes-header">
+        <div>
+            <h2>Configurações</h2>
+            <p>Personalize e gerencie o Caltrack.</p>
+        </div>
+    </div>
+
+    <div class="configuracoes-container">
+
+        <div class="configuracao-card">
+            <div class="configuracao-info">
+                <h3>Aparência</h3>
+                <p>Personalize a aparência do Caltrack.</p>
+            </div>
+
+            <div class="configuracao-opcao">
+                <label for="tema">Tema</label>
+
+                <select id="tema">
+                    <option value="claro">Claro</option>
+                    <option value="escuro">Escuro</option>
+                </select>
+            </div>
+
+            <div class="configuracao-card">
+
+    <div class="configuracao-info">
+        <h3>Gerenciamento de dados</h3>
+        <p>Exclua todas as transações e metas salvas no Caltrack.</p>
+    </div>
+
+    <div class="configuracao-opcao">
+        <button id="btn-limpar-dados" class="btn-excluir-dados">
+            Limpar dados
+        </button>
+    </div>
+
+</div>
+        </div>
+
+    </div>
+
+</section>
 
 </main>
 
@@ -293,7 +334,6 @@
 
                 </div>
 
-
                 <div>
 
                     <label for="meta-ano">
@@ -312,6 +352,7 @@
                 </div>
 
             </div>
+
 
 
             <div class="acoes-modal">
@@ -338,6 +379,44 @@
     </div>
 
 </div>
+
+
+
+<div id="modal-confirmar-exclusao" class="modal oculto">
+
+    <div class="modal-conteudo">
+
+        <h2>Excluir dados</h2>
+
+        <p>
+            Tem certeza que deseja excluir todas as transações e metas?
+            Esta ação não poderá ser desfeita.
+        </p>
+
+        <div class="acoes-modal">
+
+            <button
+                type="button"
+                id="btn-cancelar-exclusao"
+                class="btn-cancelar"
+            >
+                Cancelar
+            </button>
+
+            <button
+                type="button"
+                id="btn-confirmar-exclusao"
+                class="btn-excluir-dados"
+            >
+                Excluir dados
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+  
 
 
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -435,6 +514,8 @@
 
             </div>
 
+</div>
+
 
             <div class="campo">
 
@@ -515,6 +596,8 @@
     </div>
 
 </div>
+
+
 
 
 <!-- ==============================
@@ -635,6 +718,7 @@
 
 
 </div>
+
 
 
 <script type="module" src="js/app.js"></script>

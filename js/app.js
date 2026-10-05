@@ -33,6 +33,13 @@ import {
 } from "./ui.js";
 
 import {
+    carregarConfiguracoes,
+    salvarTema
+} from "./configuracoes.js";
+
+
+
+import {
     botaoNova,
     modal,
     botaoCancelar,
@@ -52,7 +59,9 @@ campoMetaNome,
 campoMetaObjetivo,
 campoMetaInicial,
 campoMetaMes,
-campoMetaAno
+campoMetaAno,
+seletorTema,
+botaoLimparDados
 } from "./dom.js";
 
 
@@ -266,6 +275,8 @@ filtroAno.addEventListener("change", aplicarFiltros);
 
 window.addEventListener("interfaceAtualizada", aplicarFiltros);
 
+seletorTema.addEventListener("change", salvarTema);
+
 botaoCancelar.addEventListener("click", fecharFormulario);
 
 btnExportar.addEventListener("click", exportarCSV);
@@ -281,11 +292,14 @@ console.log("secaoMetas:", secaoMetas);
 
 const menuDashboard = document.querySelector("#menu-dashboard");
 const menuTransacoes = document.querySelector("#menu-transacoes");
+const menuConfiguracoes = document.querySelector("#menu-configuracoes");
 
 const secaoDashboard = document.querySelector(".cards");
 const secaoTransacoes = document.querySelector(".transacoes");
 
 const secaoGrafico = document.querySelector(".grafico");
+const secaoConfiguracoes = document.querySelector("#secao-configuracoes");
+
 
 
 function mostrarSecao(secao) {
@@ -294,6 +308,7 @@ function mostrarSecao(secao) {
     secaoGrafico.classList.add("oculto");
     secaoTransacoes.classList.add("oculto");
     secaoMetas.classList.add("oculto");
+       secaoConfiguracoes.classList.add("oculto");
 
     secao.classList.remove("oculto");
 
@@ -334,6 +349,15 @@ menuTransacoes.addEventListener("click", () => {
     }
 
 });
+
+menuConfiguracoes.addEventListener("click", () => {
+    mostrarSecao(secaoConfiguracoes);
+
+    if (sidebar) {
+        sidebar.classList.remove("ativo");
+    }
+});
+
 
 
 
@@ -464,11 +488,36 @@ modal.addEventListener("click", function (event) {
 // ==============================
 
 // Carregar dados ao iniciar o aplicativo
+
+const modalConfirmarExclusao = document.querySelector("#modal-confirmar-exclusao");
+const botaoCancelarExclusao = document.querySelector("#btn-cancelar-exclusao");
+const botaoConfirmarExclusao = document.querySelector("#btn-confirmar-exclusao");
+
+botaoLimparDados.addEventListener("click", () => {
+    modalConfirmarExclusao.classList.remove("oculto");
+});
+
+botaoCancelarExclusao.addEventListener("click", () => {
+    modalConfirmarExclusao.classList.add("oculto");
+});
+
+botaoConfirmarExclusao.addEventListener("click", () => {
+
+    localStorage.removeItem("transacoes");
+    localStorage.removeItem("metas");
+
+    carregarTransacoes();
+    carregarMetas();
+
+    atualizarInterface();
+    listarMetas();
+
+    modalConfirmarExclusao.classList.add("oculto");
+});
 carregarTransacoes();
 carregarMetas();
-
+carregarConfiguracoes();
 atualizarInterface();
 aplicarFiltros();
 listarMetas();
-
 lucide.createIcons();

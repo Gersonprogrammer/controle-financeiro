@@ -58,3 +58,14 @@ export const campoMetaAno = document.querySelector("#meta-ano");
 
 export const listaMetas = document.querySelector("#lista-metas");
 
+export const menuConfiguracoes =
+    document.querySelector("#menu-configuracoes");
+
+export const secaoConfiguracoes =
+    document.querySelector("#secao-configuracoes");
+
+    export const seletorTema =
+    document.querySelector("#tema");
+
+    export const botaoLimparDados = document.querySelector("#btn-limpar-dados");
+    
