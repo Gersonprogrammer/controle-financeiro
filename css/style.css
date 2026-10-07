@@ -790,6 +790,30 @@ aside {
 
 }
 
+.configuracoes-container {
+    width: 100%;
+}
+
+.configuracao-card {
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.configuracao-info {
+    width: 100%;
+}
+
+.configuracao-opcao {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.configuracao-opcao select {
+    max-width: 100%;
+}
+
 
 }
 
@@ -1225,6 +1249,65 @@ body.tema-escuro .transacoes-filtros select option {
 body.tema-escuro .transacoes-filtros input::placeholder {
     color: #94a3b8;
 }
+
+.transacoes-filtros input,
+.transacoes-filtros select {
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #374151;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    box-sizing: border-box;
+}
+
+.transacoes-filtros input:focus,
+.transacoes-filtros select:focus {
+    border-color: #1E3A8A;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
+}
+
+.transacoes-filtros input::placeholder {
+    color: #9ca3af;
+}
+
+.transacoes-filtros select {
+    cursor: pointer;
+}
+
+.transacoes-filtros select:hover,
+.transacoes-filtros input:hover {
+    border-color: #9ca3af;
+}
+
+.transacoes-filtros {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background-color: #f9fafb;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+.transacoes-filtros label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+body.tema-escuro .transacoes-filtros {
+    background-color: #242424;
+    border-color: #3f3f46;
+}
+
+body.tema-escuro .transacoes-filtros label {
+    color: #cbd5e1;
+}
+
+
 
 /* ==============================
    TEMA ESCURO - MODAL TRANSAÇÃO
