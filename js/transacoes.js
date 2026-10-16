@@ -7,7 +7,12 @@ import {
     limparIndiceEdicao
 } from "./state.js";
 
-import { salvarTransacoes } from "./storage.js";
+import { auth } from "./firebase.js";
+import {
+    salvarTransacaoFirestore,
+    excluirTransacaoFirestore
+} from "./firestore-service.js";
+
 import { atualizarCards } from "./dashboard.js";
 import {
     corpoTabela,
@@ -89,15 +94,36 @@ export function listarTransacoes(lista = transacoes) {
     lucide.createIcons();
 }
 
-export function excluirTransacao(index) {
 
-     transacoes.splice(index, 1);
+export async function excluirTransacao(index) {
+    const transacao = transacoes[index];
 
-    salvarTransacoes();
+    if (!transacao) {
+        return;
+    }
 
-    atualizarInterface();
+    if (!auth.currentUser) {
+        alert("Faça login para excluir uma transação.");
+        return;
+    }
 
+    try {
+        if (transacao.id) {
+            await excluirTransacaoFirestore(
+                auth.currentUser.uid,
+                transacao.id
+            );
+        }
+
+        transacoes.splice(index, 1);
+
+        atualizarInterface();
+    } catch (erro) {
+        console.error("Erro ao excluir transação:", erro);
+        alert("Não foi possível excluir a transação. Tente novamente.");
+    }
 }
+
 
 export function editarTransacao(index) {
 
@@ -119,15 +145,18 @@ export function editarTransacao(index) {
 
 }
 
-export function salvarTransacao() {
-
+export async function salvarTransacao() {
     if (campoDescricao.value.trim() === "") {
         alert("Informe a descrição da transação.");
         campoDescricao.focus();
         return;
     }
 
-    if (Number(campoValor.value) <= 0) {
+    const valor = Number(
+        campoValor.value.replace(/\./g, "").replace(",", ".")
+    );
+
+    if (!Number.isFinite(valor) || valor <= 0) {
         alert("Informe um valor maior que zero.");
         campoValor.focus();
         return;
@@ -144,44 +173,53 @@ export function salvarTransacao() {
         campoData.focus();
         return;
     }
-const [ano, mes, dia] = campoData.value.split("-");
 
-const dataFormatada = `${dia}/${mes}/${ano}`;
+    const usuario = auth.currentUser;
+
+    if (!usuario) {
+        alert("Faça login para salvar uma transação.");
+        return;
+    }
+
+    const [ano, mes, dia] = campoData.value.split("-");
 
     const novaTransacao = {
-        descricao: campoDescricao.value,
-        valor: Number(
-    campoValor.value
-        .replace(/\./g, "")
-        .replace(",", ".")
-),
+        descricao: campoDescricao.value.trim(),
+        valor,
         categoria: campoCategoria.value,
         tipo: campoTipo.value.toLowerCase(),
-        data: dataFormatada,
+        data: `${dia}/${mes}/${ano}`,
         mes: Number(mes),
-    ano: Number(ano)
-        
+        ano: Number(ano)
     };
 
-    if (indiceEdicao === null) {
+    if (indiceEdicao !== null) {
+        const transacaoOriginal = transacoes[indiceEdicao];
 
-    transacoes.push(novaTransacao);
+        if (transacaoOriginal?.id) {
+            novaTransacao.id = transacaoOriginal.id;
+        }
+    }
 
-} else {
+    try {
+        const transacaoSalva = await salvarTransacaoFirestore(
+            usuario.uid,
+            novaTransacao
+        );
 
-    transacoes[indiceEdicao] = novaTransacao;
+        if (indiceEdicao === null) {
+            transacoes.push(transacaoSalva);
+        } else {
+            transacoes[indiceEdicao] = transacaoSalva;
+            limparIndiceEdicao();
+        }
 
-    limparIndiceEdicao();
-
-}
-
-salvarTransacoes();
-
-atualizarInterface();
-
-limparFormulario();
-
-fecharFormulario();
-
+        atualizarInterface();
+        limparFormulario();
+        fecharFormulario();
+    } catch (erro) {
+        console.error("Erro ao salvar transação:", erro);
+        alert("Não foi possível salvar a transação. Tente novamente.");
+    }
 }
 

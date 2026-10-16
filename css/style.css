@@ -599,7 +599,7 @@ tbody td[colspan] {
 
    position: absolute;
 
-    top: 75;
+    top: 75px;
 
     left: -260px;
 
@@ -1353,4 +1353,135 @@ body.tema-escuro .modal-conteudo select option {
 
 .btn-excluir-dados:hover {
     background-color: #b91c1c;
+}
+
+css
+/* ==============================
+   Tela de autenticação
+============================== */
+
+.tela-autenticacao {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: #f4f6f9;
+}
+
+.caixa-autenticacao {
+    width: 100%;
+    max-width: 400px;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.caixa-autenticacao h1 {
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.caixa-autenticacao > p:first-of-type {
+    margin: 0 0 28px;
+    text-align: center;
+    color: #666666;
+}
+
+.caixa-autenticacao h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+#form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#form-login input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font: inherit;
+}
+
+#form-login input:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 1px;
+}
+
+#btn-entrar {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#btn-entrar:hover {
+    background: #1d4ed8;
+}
+
+.alternar-autenticacao {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+#btn-mostrar-cadastro {
+    padding: 4px;
+    border: none;
+    background: transparent;
+    color: #2563eb;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#mensagem-autenticacao {
+    color: #b91c1c;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .caixa-autenticacao {
+        padding: 24px;
+    }
+}
+
+
+/* Controle de visibilidade durante a autenticação */
+.tela-autenticacao.oculto,
+header.oculto,
+.container.oculto {
+    display: none;
+}
+
+/* Botão para encerrar a sessão */
+#btn-sair {
+    padding: 10px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#btn-sair:hover {
+    background: #1d4ed8;
+}
+
+#btn-sair:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }

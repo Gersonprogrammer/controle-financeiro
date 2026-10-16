@@ -1,5 +1,11 @@
+
 import { metas } from "./state.js";
-import { salvarMetas } from "./storage.js";
+import { auth } from "./firebase.js";
+import {
+    salvarMetaFirestore,
+    excluirMetaFirestore
+} from "./firestore-service.js";
+
 
 import {
     modalMeta,
@@ -13,52 +19,65 @@ import {
 let metaEmEdicao = null;
 
 
-export function criarMeta({
+export async function criarMeta({
     nome,
     valorObjetivo,
     valorAtual,
     prazoMes,
     prazoAno
 }) {
+    const usuario = auth.currentUser;
 
-    
-
-    if (metaEmEdicao !== null) {
-
-        const meta = metas.find(
-            (meta) => meta.id === metaEmEdicao
-        );
-
-
-
-
-        if (meta) {
-            meta.nome = nome;
-            meta.valorObjetivo = valorObjetivo;
-            meta.valorAtual = valorAtual;
-            meta.prazoMes = prazoMes;
-            meta.prazoAno = prazoAno;
-        }
-
-        metaEmEdicao = null;
-
-    } else {
-
-        const novaMeta = {
-            id: Date.now(),
-            nome: nome,
-            valorObjetivo: valorObjetivo,
-            valorAtual: valorAtual,
-            prazoMes: prazoMes,
-            prazoAno: prazoAno,
-            criadaEm: new Date().toLocaleDateString("pt-BR")
-        };
-
-        metas.push(novaMeta);
+    if (!usuario) {
+        alert("Faça login para salvar uma meta.");
+        return;
     }
 
-    salvarMetas();
+    const metaOriginal = metaEmEdicao !== null
+        ? metas.find((meta) => meta.id === metaEmEdicao)
+        : null;
+
+    const novaMeta = {
+        nome,
+        valorObjetivo,
+        valorAtual,
+        prazoMes,
+        prazoAno,
+        criadaEm: metaOriginal?.criadaEm
+            || new Date().toLocaleDateString("pt-BR")
+    };
+
+    if (metaOriginal) {
+        novaMeta.id = metaOriginal.id;
+    }
+
+    try {
+        const metaSalva = await salvarMetaFirestore(
+            usuario.uid,
+            novaMeta
+        );
+
+        if (metaOriginal) {
+            const indice = metas.findIndex(
+                (meta) => meta.id === metaOriginal.id
+            );
+
+            if (indice !== -1) {
+                metas[indice] = metaSalva;
+            }
+
+            metaEmEdicao = null;
+        } else {
+            metas.push(metaSalva);
+        }
+
+        listarMetas();
+    } catch (erro) {
+        console.error("Erro ao salvar meta:", erro);
+        alert("Não foi possível salvar a meta. Tente novamente.");
+    }
 }
+
 
 
 
@@ -101,7 +120,7 @@ export function listarMetas() {
 <button
     class="btn-excluir-meta"
     type="button"
-    onclick="excluirMeta(${meta.id})"
+    onclick="excluirMeta('${meta.id}')"
 >
     <i data-lucide="trash-2"></i>
 </button>
@@ -156,7 +175,7 @@ export function listarMetas() {
              <button
     class="btn-editar-meta"
     type="button"
-    onclick="editarMeta(${meta.id})"
+    onclick="editarMeta('${meta.id}')"
 >
     Editar
 </button>
@@ -170,23 +189,45 @@ export function listarMetas() {
     lucide.createIcons();
 }
 
-export function excluirMeta(id) {
 
-    const indice = metas.findIndex((meta) => meta.id === id);
+export async function excluirMeta(id) {
+    const usuario = auth.currentUser;
+
+    if (!usuario) {
+        alert("Faça login para excluir uma meta.");
+        return;
+    }
+
+    const indice = metas.findIndex(
+        (meta) => String(meta.id) === String(id)
+    );
 
     if (indice === -1) {
         return;
     }
 
-    metas.splice(indice, 1);
+    try {
+        await excluirMetaFirestore(usuario.uid, id);
 
-    salvarMetas();
+        metas.splice(indice, 1);
 
-    listarMetas();
+        if (metaEmEdicao !== null && String(metaEmEdicao) === String(id)) {
+            metaEmEdicao = null;
+        }
+
+        listarMetas();
+    } catch (erro) {
+        console.error("Erro ao excluir meta:", erro);
+        alert("Não foi possível excluir a meta. Tente novamente.");
+    }
 }
+
+
 export function editarMeta(id) {
 
-    const meta = metas.find((meta) => meta.id === id);
+    const meta = metas.find(
+    (meta) => String(meta.id) === String(id)
+);
 
     if (!meta) {
         return;

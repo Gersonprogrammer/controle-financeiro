@@ -5,9 +5,17 @@
 import { atualizarInterface } from "./interface.js";
 import { atualizarGrafico } from "./grafico.js";
 import { exportarCSV } from "./exportacao.js";
-import { carregarTransacoes, carregarMetas } from "./storage.js";
 import { atualizarCards } from "./dashboard.js";
-import { transacoes, transacoesFiltradas } from "./state.js";
+import { transacoes, transacoesFiltradas, metas } from "./state.js";
+
+
+import { auth } from "./firebase.js";
+
+import {
+    excluirTransacaoFirestore,
+    excluirMetaFirestore
+} from "./firestore-service.js";
+
 
 
 import {
@@ -409,16 +417,22 @@ if (btnMenu && sidebar) {
 
 
 
-
-
 const formulario = document.querySelector("#form-transacao");
 
-formulario.addEventListener("submit", (event) => {
+formulario.addEventListener("submit", async (event) => {
     event.preventDefault();
-    salvarTransacao();
+
+    try {
+        await salvarTransacao();
+    } catch (erro) {
+        console.error("Erro ao salvar transação:", erro);
+        mostrarNotificacao("Não foi possível salvar a transação.");
+    }
+    
 });
 
-formularioMeta.addEventListener("submit", (event) => {
+
+formularioMeta.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 
@@ -445,24 +459,26 @@ const valorAtual = campoMetaInicial.value === ""
 
     const prazoAno = Number(campoMetaAno.value);
 
-    criarMeta({
-        nome,
-        valorObjetivo,
-        valorAtual,
-        prazoMes,
-        prazoAno
-    });
+ 
+    try {
+        await criarMeta({
+            nome,
+            valorObjetivo,
+            valorAtual,
+            prazoMes,
+            prazoAno
+        });
 
-    listarMetas();
+        formularioMeta.reset();
+        campoMetaAno.value = new Date().getFullYear();
+        modalMeta.classList.add("oculto");
 
-    formularioMeta.reset();
+        mostrarNotificacao("Meta salva com sucesso!");
 
-    campoMetaAno.value = new Date().getFullYear();
-
-    modalMeta.classList.add("oculto");
-
-    mostrarNotificacao("Meta criada com sucesso!");
-    
+    } catch (erro) {
+        console.error("Erro ao salvar meta:", erro);
+        mostrarNotificacao("Não foi possível salvar a meta.");
+    }
 });
 
 // Fechar modal com a tecla ESC
@@ -473,6 +489,7 @@ document.addEventListener("keydown", function (event) {
     }
 
 });
+
 
 // Fechar modal clicando fora dele
 
@@ -501,23 +518,50 @@ botaoCancelarExclusao.addEventListener("click", () => {
     modalConfirmarExclusao.classList.add("oculto");
 });
 
-botaoConfirmarExclusao.addEventListener("click", () => {
 
-    localStorage.removeItem("transacoes");
-    localStorage.removeItem("metas");
+botaoConfirmarExclusao.addEventListener("click", async () => {
+    const usuario = auth.currentUser;
 
-    carregarTransacoes();
-    carregarMetas();
+    if (!usuario) {
+        alert("Faça login para excluir seus dados.");
+        return;
+    }
 
-    atualizarInterface();
-    listarMetas();
+    botaoConfirmarExclusao.disabled = true;
 
-    modalConfirmarExclusao.classList.add("oculto");
+    try {
+        await Promise.all([
+            ...transacoes
+                .filter((transacao) => transacao.id)
+                .map((transacao) =>
+                    excluirTransacaoFirestore(usuario.uid, transacao.id)
+                ),
+            ...metas
+                .filter((meta) => meta.id)
+                .map((meta) =>
+                    excluirMetaFirestore(usuario.uid, meta.id)
+                )
+        ]);
+
+        transacoes.length = 0;
+        metas.length = 0;
+
+        atualizarInterface();
+        listarMetas();
+
+        modalConfirmarExclusao.classList.add("oculto");
+    } catch (erro) {
+        console.error("Erro ao excluir os dados:", erro);
+        alert("Não foi possível excluir todos os dados. Tente novamente.");
+    } finally {
+        botaoConfirmarExclusao.disabled = false;
+    }
 });
-carregarTransacoes();
-carregarMetas();
+
+
 carregarConfiguracoes();
 atualizarInterface();
 aplicarFiltros();
 listarMetas();
 lucide.createIcons();
+
