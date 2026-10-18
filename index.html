@@ -26,14 +26,28 @@
                     required
                 >
 
-                <label for="senha-login">Senha</label>
-                <input
-                    type="password"
-                    id="senha-login"
-                    autocomplete="current-password"
-                    placeholder="Digite sua senha"
-                    required
-                >
+          
+<label for="senha-login">Senha</label>
+
+<div class="campo-senha">
+    <input
+        type="password"
+        id="senha-login"
+        autocomplete="current-password"
+        placeholder="Digite sua senha"
+        required
+    >
+
+    <button
+        type="button"
+        id="btn-mostrar-senha"
+        aria-label="Mostrar senha"
+        aria-pressed="false"
+    >
+        <i data-lucide="eye"></i>
+    </button>
+</div>
+
 
                 <button type="submit" id="btn-entrar">Entrar</button>
             </form>

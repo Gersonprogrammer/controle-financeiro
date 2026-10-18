@@ -1413,6 +1413,48 @@ css
     outline-offset: 1px;
 }
 
+
+/* Campo de senha com botão para mostrar ou ocultar */
+.campo-senha {
+    position: relative;
+    width: 100%;
+}
+
+#form-login .campo-senha input {
+    box-sizing: border-box;
+    padding-right: 44px;
+}
+
+#btn-mostrar-senha {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+}
+
+#btn-mostrar-senha:hover {
+    background: #f1f5f9;
+}
+
+#btn-mostrar-senha:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+#btn-mostrar-senha svg {
+    width: 20px;
+    height: 20px;
+}
+
 #btn-entrar {
     margin-top: 10px;
     padding: 12px;

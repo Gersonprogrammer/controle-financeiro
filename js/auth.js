@@ -20,6 +20,7 @@ const telaAutenticacao = document.querySelector("#tela-autenticacao");
 const formularioLogin = document.querySelector("#form-login");
 const campoEmail = document.querySelector("#email-login");
 const campoSenha = document.querySelector("#senha-login");
+const botaoMostrarSenha = document.querySelector("#btn-mostrar-senha");
 const botaoMostrarCadastro = document.querySelector("#btn-mostrar-cadastro");
 const tituloAutenticacao = document.querySelector("#titulo-autenticacao");
 const botaoEntrar = document.querySelector("#btn-entrar");
@@ -28,6 +29,30 @@ const mensagemAutenticacao = document.querySelector("#mensagem-autenticacao");
 const cabecalho = document.querySelector("header");
 const painel = document.querySelector(".container");
 const botaoSair = document.querySelector("#btn-sair");
+
+
+botaoMostrarSenha.addEventListener("click", () => {
+    const senhaEstaVisivel = campoSenha.type === "text";
+
+    campoSenha.type = senhaEstaVisivel ? "password" : "text";
+
+    botaoMostrarSenha.setAttribute(
+        "aria-label",
+        senhaEstaVisivel ? "Mostrar senha" : "Ocultar senha"
+    );
+
+    botaoMostrarSenha.setAttribute(
+        "aria-pressed",
+        String(!senhaEstaVisivel)
+    );
+
+    botaoMostrarSenha.innerHTML = `
+        <i data-lucide="${senhaEstaVisivel ? "eye" : "eye-off"}"></i>
+    `;
+
+    lucide.createIcons();
+});
+
 botaoSair.addEventListener("click", async () => {
     try {
         await signOut(auth);
@@ -134,10 +159,15 @@ if (!usuario) {
         transacoes.splice(0, transacoes.length, ...transacoesSalvas);
         metas.splice(0, metas.length, ...metasSalvas);
 
-        if (!aplicativoIniciado) {
-            await import("./app.js");
-            aplicativoIniciado = true;
-        }
+    
+if (!aplicativoIniciado) {
+    await import("./app.js");
+    aplicativoIniciado = true;
+} else {
+    // Atualiza tabela, indicadores e gráficos após novo login.
+    atualizarInterface();
+}
+
 
         cabecalho.classList.remove("oculto");
         painel.classList.remove("oculto");
