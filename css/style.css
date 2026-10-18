@@ -36,9 +36,20 @@ header {
     box-shadow: 0 2px 8px rgba(0,0,0,.15);
 }
 
+
 .logo h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 28px;
 }
+
+.logo-simbolo {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
 
 .logo p {
     font-size: 14px;
@@ -204,7 +215,7 @@ main h2 {
 
     border-radius: 12px;
 
-    border: 2px dashed #cbd5e1;
+   border: 1px solid #cbd5e1;
 
     display: flex;
 
@@ -379,7 +390,7 @@ tbody td[colspan] {
     height: 300px;
     background: white;
     border-radius: 12px;
-    border: 2px dashed #cbd5e1;
+  border: 1px solid #cbd5e1;
 
     display: flex;
     justify-content: center;
@@ -584,14 +595,17 @@ tbody td[colspan] {
 @media (max-width: 768px) {
 
 
+
 .btn-menu {
     display: block;
     font-size: 28px;
+    color: #FFFFFF;
     background: none;
     border: none;
     cursor: pointer;
     padding: 5px;
 }
+
        
 
 
@@ -1507,17 +1521,19 @@ header.oculto,
 }
 
 /* Botão para encerrar a sessão */
+
 #btn-sair {
-    padding: 10px 16px;
+    padding: 5px 8px;
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 8px;
     background: #2563eb;
     color: #ffffff;
-    font: inherit;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
+
 
 #btn-sair:hover {
     background: #1d4ed8;
