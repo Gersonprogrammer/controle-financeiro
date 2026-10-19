@@ -499,7 +499,8 @@ tbody td[colspan] {
 
 .cards.oculto,
 .grafico.oculto,
-.transacoes.oculto {
+.transacoes.oculto,
+.dashboard-header.oculto {
     display: none;
 }
 
@@ -1542,4 +1543,80 @@ header.oculto,
 #btn-sair:focus-visible {
     outline: 2px solid #ffffff;
     outline-offset: 3px;
+}
+
+
+/* Seletores de período do Dashboard */
+
+.dashboard-periodo {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.dashboard-periodo > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dashboard-periodo label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.dashboard-periodo select {
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #1f2937;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dashboard-periodo select:focus {
+    outline: none;
+    border-color: #1E3A8A;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
+}
+
+.dashboard-periodo select:hover {
+    border-color: #9ca3af;
+}
+
+/* Suporte ao tema escuro */
+body.tema-escuro .dashboard-periodo label {
+    color: #cbd5e1;
+}
+
+body.tema-escuro .dashboard-periodo select {
+    background-color: #2a2a2a;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+
+
+/* Ações das metas no tema escuro */
+
+body.tema-escuro .btn-excluir-meta {
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+body.tema-escuro .btn-excluir-meta:hover {
+    color: #ef4444;
+}
+
+body.tema-escuro .btn-editar-meta {
+    color: #cbd5e1;
+    transition: color 0.2s;
+}
+
+body.tema-escuro .btn-editar-meta:hover {
+    color: #ffffff;
 }

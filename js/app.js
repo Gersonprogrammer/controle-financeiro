@@ -59,6 +59,9 @@ import {
     campoValor,
     filtroMes,
     filtroAno,
+        dashboardFiltroMes,
+    dashboardFiltroAno,
+        mesReferencia,
     botaoNovaMeta,
     modalMeta,
     botaoCancelarMeta,
@@ -100,6 +103,28 @@ function aplicarFiltros() {
     const mes = filtroMes.value;
 
 const ano = filtroAno.value;
+
+
+if (mesReferencia) {
+    if (mes === "" && ano === "") {
+        mesReferencia.textContent = "Todos os meses";
+    } else if (mes === "") {
+        mesReferencia.textContent = `Todos os meses de ${ano}`;
+    } else {
+        const nomesMeses = [
+            "Janeiro", "Fevereiro", "Março", "Abril",
+            "Maio", "Junho", "Julho", "Agosto",
+            "Setembro", "Outubro", "Novembro", "Dezembro"
+        ];
+
+        const nomeMes = nomesMeses[Number(mes) - 1];
+
+        mesReferencia.textContent = ano === ""
+            ? nomeMes
+            : `${nomeMes} de ${ano}`;
+    }
+}
+
 
     const listaFiltrada = transacoes.filter(function (transacao) {
 
@@ -277,9 +302,27 @@ filtroTipo.addEventListener("change", aplicarFiltros);
 
 ordenacao.addEventListener("change", aplicarFiltros);
 
-filtroMes.addEventListener("change", aplicarFiltros);
 
-filtroAno.addEventListener("change", aplicarFiltros);
+filtroMes.addEventListener("change", () => {
+    dashboardFiltroMes.value = filtroMes.value;
+    aplicarFiltros();
+});
+
+filtroAno.addEventListener("change", () => {
+    dashboardFiltroAno.value = filtroAno.value;
+    aplicarFiltros();
+});
+
+dashboardFiltroMes.addEventListener("change", () => {
+    filtroMes.value = dashboardFiltroMes.value;
+    aplicarFiltros();
+});
+
+dashboardFiltroAno.addEventListener("change", () => {
+    filtroAno.value = dashboardFiltroAno.value;
+    aplicarFiltros();
+});
+
 
 window.addEventListener("interfaceAtualizada", aplicarFiltros);
 
@@ -303,6 +346,7 @@ const menuTransacoes = document.querySelector("#menu-transacoes");
 const menuConfiguracoes = document.querySelector("#menu-configuracoes");
 
 const secaoDashboard = document.querySelector(".cards");
+const secaoDashboardHeader = document.querySelector(".dashboard-header");
 const secaoTransacoes = document.querySelector(".transacoes");
 
 const secaoGrafico = document.querySelector(".grafico");
@@ -313,6 +357,7 @@ const secaoConfiguracoes = document.querySelector("#secao-configuracoes");
 function mostrarSecao(secao) {
 
     secaoDashboard.classList.add("oculto");
+    secaoDashboardHeader.classList.add("oculto");
     secaoGrafico.classList.add("oculto");
     secaoTransacoes.classList.add("oculto");
     secaoMetas.classList.add("oculto");
@@ -338,10 +383,10 @@ menuMetas.addEventListener("click", () => {
 
 menuDashboard.addEventListener("click", () => {
 
-    mostrarSecao(secaoDashboard);
+   mostrarSecao(secaoDashboard);
 
-    secaoGrafico.classList.remove("oculto");
-
+secaoDashboardHeader.classList.remove("oculto");
+secaoGrafico.classList.remove("oculto");
     if (sidebar) {
         sidebar.classList.remove("ativo");
     }

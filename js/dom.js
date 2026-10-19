@@ -24,6 +24,12 @@ export const filtroMes = document.querySelector("#filtro-mes");
 
 export const filtroAno = document.querySelector("#filtro-ano");
 
+export const dashboardFiltroMes = document.querySelector("#dashboard-filtro-mes");
+
+export const dashboardFiltroAno = document.querySelector("#dashboard-filtro-ano");
+
+export const mesReferencia = document.querySelector("#mes-referencia");
+
 export const campoCategoria = document.querySelector("#categoria");
 
 export const campoData = document.querySelector("#data");
