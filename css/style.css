@@ -595,7 +595,10 @@ tbody td[colspan] {
 
 @media (max-width: 768px) {
 
-
+    #btn-sair {
+    padding: 3px 5px;
+    font-size: 11px;
+}
 
 .btn-menu {
     display: block;
@@ -605,9 +608,9 @@ tbody td[colspan] {
     border: none;
     cursor: pointer;
     padding: 5px;
+    margin-left: -12px;
 }
 
-       
 
 
 .sidebar {
