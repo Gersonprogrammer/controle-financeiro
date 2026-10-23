@@ -698,8 +698,9 @@ tbody td[colspan] {
 }
 
 .card p {
-    font-size: 20px;
-    overflow-wrap: anywhere;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow-wrap: normal;
 }
 
 .card.receita {
