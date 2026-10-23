@@ -679,24 +679,44 @@ tbody td[colspan] {
 
 }
 
+
 .cards {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 16px;
-
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
 }
 
+.card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 14px;
+}
 
-   .card {
+.card h3 {
+    font-size: 14px;
+}
 
-        width: 100%;
+.card p {
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
 
-        box-sizing: border-box;
+.card.receita {
+    grid-column: 1;
+    grid-row: 1;
+}
 
-    }
+.card.despesa {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.card.saldo {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
 
     .container {
 
@@ -851,10 +871,19 @@ main {
 
 
 
+
 .grafico-placeholder {
     width: 100%;
-    height: 220px;
+    height: 260px;
+    min-width: 0;
+    box-sizing: border-box;
+    position: relative;
 }
+
+.grafico-placeholder canvas {
+    max-width: 100%;
+}
+
 
 .container {
 
