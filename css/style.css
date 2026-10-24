@@ -595,9 +595,10 @@ tbody td[colspan] {
 
 @media (max-width: 768px) {
 
-    #btn-sair {
-    padding: 3px 5px;
+#btn-sair {
+    padding: 2px 3px;
     font-size: 11px;
+    line-height: 1.2;
 }
 
 .btn-menu {
@@ -608,7 +609,7 @@ tbody td[colspan] {
     border: none;
     cursor: pointer;
     padding: 5px;
-    margin-left: -12px;
+    margin-left: -18px;
 }
 
 
