@@ -731,92 +731,42 @@ tbody td[colspan] {
 
  
 
-    .tabela-transacoes thead {
 
-    display: none;
-
-}
-
-.tabela-transacoes,
-.tabela-transacoes tbody,
-.tabela-transacoes tr,
-.tabela-transacoes td {
-
+/* Tabela de transações compacta no celular */
+.tabela-transacoes {
     display: block;
-
-
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 11px;
 }
 
-
-.tabela-transacoes tbody tr {
-
-    background: white;
-
-    margin-bottom: 16px;
-
-    border-radius: 12px;
-
-    padding: 12px;
-
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-
+.tabela-transacoes {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 9px;
 }
 
-.tabela-transacoes tbody tr {
-
-    background: white;
-
-    margin-bottom: 16px;
-
-    border-radius: 12px;
-
-    padding: 18px;
-
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-
-}
-
+.tabela-transacoes th,
 .tabela-transacoes td {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    padding: 10px 8px;
-
+    display: table-cell;
+    padding: 6px 2px;
+    white-space: nowrap;
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.tabela-transacoes td::before {
-
-    content: attr(data-label);
-
-    font-weight: bold;
-
-    color: #64748b;
-
+.tabela-transacoes th {
+    font-size: 9px;
 }
 
-.tabela-transacoes td:last-child {
-
-    justify-content: flex-end;
-
-    gap: 20px;
-
-    padding-top: 20px;
-
-
-
+.tabela-transacoes tbody tr {
+    border-bottom: 5px solid transparent;
 }
-
-
-
-
-.tabela-transacoes td:last-child::before {
-
-    display: none;
-
-}
-
 
 aside {
 
@@ -853,6 +803,29 @@ aside {
 .configuracao-opcao select {
     max-width: 100%;
 }
+
+
+/* Indicador de tipo compacto no celular */
+
+.tabela-transacoes .badge.receita,
+.tabela-transacoes .badge.despesa {
+    background: transparent;
+    padding: 2px 4px;
+    border: 1px solid currentColor;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tabela-transacoes .badge.receita {
+    color: #16A34A;
+}
+
+.tabela-transacoes .badge.despesa {
+    color: #DC2626;
+}
+
 
 
 }
