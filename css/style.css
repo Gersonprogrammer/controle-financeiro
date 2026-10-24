@@ -752,7 +752,7 @@ tbody td[colspan] {
 .tabela-transacoes th,
 .tabela-transacoes td {
     display: table-cell;
-    padding: 6px 2px;
+    padding: 5px 1px;
     white-space: nowrap;
     text-align: left;
     vertical-align: middle;
@@ -762,6 +762,37 @@ tbody td[colspan] {
 
 .tabela-transacoes th {
     font-size: 9px;
+}
+
+/* Ajusta as larguras das colunas no celular */
+.tabela-transacoes th:nth-child(1),
+.tabela-transacoes td:nth-child(1) {
+    width: 16%;
+}
+
+.tabela-transacoes th:nth-child(2),
+.tabela-transacoes td:nth-child(2) {
+    width: 22%;
+}
+
+.tabela-transacoes th:nth-child(3),
+.tabela-transacoes td:nth-child(3) {
+    width: 15%;
+}
+
+.tabela-transacoes th:nth-child(4),
+.tabela-transacoes td:nth-child(4) {
+    width: 16%;
+}
+
+.tabela-transacoes th:nth-child(5),
+.tabela-transacoes td:nth-child(5) {
+    width: 12%;
+}
+
+.tabela-transacoes th:nth-child(6),
+.tabela-transacoes td:nth-child(6) {
+    width: 10%;
 }
 
 .tabela-transacoes tbody tr {
@@ -826,6 +857,19 @@ aside {
     color: #DC2626;
 }
 
+    /* Ícones de ações menores na tabela de transações */
+.tabela-transacoes .icone-editar,
+.tabela-transacoes .icone-excluir {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    margin-right: 1;
+}
+
+.tabela-transacoes td:last-child {
+    padding-right: 1;
+    text-align: right;
+}
 
 
 }
