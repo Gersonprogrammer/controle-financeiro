@@ -767,17 +767,17 @@ tbody td[colspan] {
 /* Ajusta as larguras das colunas no celular */
 .tabela-transacoes th:nth-child(1),
 .tabela-transacoes td:nth-child(1) {
-    width: 16%;
+    width: 14%;
 }
 
 .tabela-transacoes th:nth-child(2),
 .tabela-transacoes td:nth-child(2) {
-    width: 22%;
+    width: 18%;
 }
 
 .tabela-transacoes th:nth-child(3),
 .tabela-transacoes td:nth-child(3) {
-    width: 15%;
+    width: 12%;
 }
 
 .tabela-transacoes th:nth-child(4),
@@ -879,7 +879,7 @@ aside {
 
 main {
 
-    padding: 16px;
+    padding: 10px;
 
 }
 
