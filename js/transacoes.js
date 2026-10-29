@@ -102,6 +102,14 @@ export async function excluirTransacao(index) {
         return;
     }
 
+        const confirmar = confirm(
+        `Tem certeza que deseja excluir a transação "${transacao.descricao}"?`
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
     if (!auth.currentUser) {
         alert("Faça login para excluir uma transação.");
         return;
