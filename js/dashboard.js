@@ -40,4 +40,10 @@ export function atualizarCards(lista = transacoes) {
             currency: "BRL"
         });
 
+    if (saldo < 0) {
+        cardSaldo.style.color = "#DC2626";
+    } else {
+        cardSaldo.style.color = "";
+    }
+
 }

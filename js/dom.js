@@ -74,4 +74,51 @@ export const secaoConfiguracoes =
     document.querySelector("#tema");
 
     export const botaoLimparDados = document.querySelector("#btn-limpar-dados");
+
+    // Gastos Fixos
+
+export const secaoGastosFixos =
+    document.querySelector("#secao-gastos-fixos");
+
+export const botaoNovoGastoFixo =
+    document.querySelector("#btn-novo-gasto-fixo");
+
+export const modalGastoFixo =
+    document.querySelector("#modal-gasto-fixo");
+
+export const formularioGastoFixo =
+    document.querySelector("#form-gasto-fixo");
+
+export const botaoCancelarGastoFixo =
+    document.querySelector("#btn-cancelar-gasto-fixo");
+
+export const campoGastoFixoDescricao =
+    document.querySelector("#gasto-fixo-descricao");
+
+export const campoGastoFixoValor =
+    document.querySelector("#gasto-fixo-valor");
+
+export const campoGastoFixoCategoria =
+    document.querySelector("#gasto-fixo-categoria");
+
+export const campoGastoFixoDia =
+    document.querySelector("#gasto-fixo-dia");
+
+export const listaGastosFixos =
+    document.querySelector("#lista-gastos-fixos");
+
+    // Lançamento mensal de Gastos Fixos
+
+export const campoGastosFixosMes =
+    document.querySelector("#gastos-fixos-mes");
+
+export const campoGastosFixosAno =
+    document.querySelector("#gastos-fixos-ano");
+
+export const selecionarTodosGastos =
+    document.querySelector("#selecionar-todos-gastos");
+
+export const botaoLancarGastosFixos =
+    document.querySelector("#btn-lancar-gastos-fixos");
+    
     

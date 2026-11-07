@@ -110,6 +110,7 @@
                <li id="menu-dashboard">Dashboard</li>
 <li id="menu-transacoes">Transações</li>
                 <li id="menu-metas">Metas</li>
+                <li id="menu-gastos-fixos">Gastos Fixos</li>
                 <li id="menu-configuracoes">Configurações</li>
                 <li>Relatórios</li>
             </ul>
@@ -327,6 +328,67 @@
 
     <div id="lista-metas" class="lista-metas">
     </div>
+
+</section>
+
+<section id="secao-gastos-fixos" class="secao-app oculto">
+
+    <div class="gastos-fixos-header">
+        <div>
+            <h2>Gastos Fixos</h2>
+            <p>Cadastre e lance suas despesas recorrentes.</p>
+        </div>
+
+        <button id="btn-novo-gasto-fixo" class="btn-novo-gasto-fixo">
+            + Novo Gasto Fixo
+        </button>
+    </div>
+
+    <div id="lista-gastos-fixos" class="lista-gastos-fixos">
+    </div>
+
+    <!-- Área de lançamento mensal -->
+<div class="gastos-fixos-lancamento">
+
+    <h3>Lançamento mensal</h3>
+
+    <div class="gastos-fixos-filtros">
+
+        <div>
+            <label for="gastos-fixos-mes">Mês</label>
+            <select id="gastos-fixos-mes">
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Março</option>
+                <option value="4">Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="gastos-fixos-ano">Ano</label>
+            <input id="gastos-fixos-ano" type="number" min="2000" max="2100">
+        </div>
+
+    </div>
+
+    <label class="selecionar-todos-gastos">
+        <input type="checkbox" id="selecionar-todos-gastos">
+        Selecionar todos
+    </label>
+
+    <button type="button" id="btn-lancar-gastos-fixos">
+        Lançar despesas
+    </button>
+
+</div>
 
 </section>
 
@@ -602,7 +664,81 @@
 
 </div>
 
+<!-- MODAL NOVO GASTO FIXO -->
 
+<div id="modal-gasto-fixo" class="modal oculto">
+
+    <div class="modal-conteudo">
+
+        <h2>Novo Gasto Fixo</h2>
+
+        <form id="form-gasto-fixo">
+
+            <label for="gasto-fixo-descricao">Descrição</label>
+            <input
+                id="gasto-fixo-descricao"
+                type="text"
+                placeholder="Ex.: Aluguel"
+                required
+            >
+
+            <label for="gasto-fixo-valor">Valor</label>
+            <input
+                id="gasto-fixo-valor"
+                type="number"
+                min="0.01"
+                step="0.01"
+                placeholder="0,00"
+                required
+            >
+
+            <label for="gasto-fixo-categoria">Categoria</label>
+
+            <select id="gasto-fixo-categoria" required>
+
+                <option value="">Selecione...</option>
+                <option>Alimentação</option>
+                <option>Transporte</option>
+                <option>Moradia</option>
+                <option>Saúde</option>
+                <option>Educação</option>
+                <option>Lazer</option>
+                <option>Outros</option>
+
+            </select>
+
+            <label for="gasto-fixo-dia">Dia de vencimento</label>
+            <input
+                id="gasto-fixo-dia"
+                type="number"
+                min="1"
+                max="31"
+                placeholder="Ex.: 10"
+                required
+            >
+
+            <div class="acoes-modal">
+
+                <button
+                    type="button"
+                    id="btn-cancelar-gasto-fixo"
+                    class="btn-cancelar">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-salvar">
+                    Salvar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js">
 

@@ -539,6 +539,22 @@ tbody td[colspan] {
     flex-direction: column;
     gap: 12px;
 }
+
+/* Formulário de Gastos Fixos */
+
+#form-gasto-fixo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#form-gasto-fixo label,
+#form-gasto-fixo input,
+#form-gasto-fixo select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .acoes-modal{
     display:flex;
     justify-content:flex-end;
@@ -1671,3 +1687,308 @@ body.tema-escuro .btn-editar-meta {
 body.tema-escuro .btn-editar-meta:hover {
     color: #ffffff;
 }
+
+/* ==============================
+   GASTOS FIXOS
+============================== */
+
+.lista-gastos-fixos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.gasto-fixo-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-sizing: border-box;
+}
+
+.gasto-fixo-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.gasto-fixo-identificacao {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.gasto-fixo-identificacao h3 {
+    margin: 0 0 5px;
+    color: #1f2937;
+}
+
+.gasto-fixo-identificacao p {
+    margin: 0;
+    font-size: 14px;
+    color: #666666;
+}
+
+.gasto-fixo-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 14px;
+}
+
+.gasto-fixo-card-footer strong {
+    color: #1E3A8A;
+    font-size: 18px;
+}
+
+.gasto-fixo-card-footer span {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* Ações dos cards de Gastos Fixos */
+
+.gasto-fixo-acoes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-editar-gasto-fixo {
+    background: transparent;
+    border: none;
+    color: #1E3A8A;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.btn-editar-gasto-fixo:hover {
+    color: #2563eb;
+}
+
+.btn-excluir-gasto-fixo {
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-excluir-gasto-fixo svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-excluir-gasto-fixo:hover {
+    color: #dc2626;
+}
+
+/* Área de lançamento mensal de Gastos Fixos */
+
+.gastos-fixos-lancamento {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.gastos-fixos-lancamento h3 {
+    margin: 0 0 15px;
+    color: #1f2937;
+    font-size: 17px;
+}
+
+.gastos-fixos-filtros {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.gastos-fixos-filtros > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gastos-fixos-filtros label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.gastos-fixos-filtros input,
+.gastos-fixos-filtros select {
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.gastos-fixos-filtros input:focus,
+.gastos-fixos-filtros select:focus {
+    outline: none;
+    border-color: #1E3A8A;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
+}
+
+.selecionar-todos-gastos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    color: #4b5563;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#btn-lancar-gastos-fixos {
+    background: #1E3A8A;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#btn-lancar-gastos-fixos:hover {
+    background: #1e40af;
+}
+
+/* Responsividade - Gastos Fixos */
+
+@media (max-width: 600px) {
+
+    .lista-gastos-fixos {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .gasto-fixo-card {
+        padding: 15px;
+        gap: 14px;
+    }
+
+    .gasto-fixo-card-header {
+        flex-wrap: wrap;
+    }
+
+    .gasto-fixo-card-footer {
+        flex-wrap: wrap;
+    }
+
+    .gastos-fixos-lancamento {
+        padding: 15px;
+    }
+
+    .gastos-fixos-filtros {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .gastos-fixos-filtros > div {
+        width: 100%;
+    }
+
+    .gastos-fixos-filtros input,
+    .gastos-fixos-filtros select {
+        width: 100%;
+    }
+
+    #btn-lancar-gastos-fixos {
+        width: 100%;
+    }
+
+}
+
+/* Tema escuro - Gastos Fixos */
+
+body.tema-escuro .gasto-fixo-card,
+body.tema-escuro .gastos-fixos-lancamento {
+    background-color: #2a2a2a;
+    border-color: #475569;
+}
+
+body.tema-escuro .gasto-fixo-identificacao h3,
+body.tema-escuro .gastos-fixos-lancamento h3 {
+    color: #e2e8f0;
+}
+
+body.tema-escuro .gasto-fixo-identificacao p,
+body.tema-escuro .gasto-fixo-card-footer span,
+body.tema-escuro .selecionar-todos-gastos,
+body.tema-escuro .gastos-fixos-filtros label {
+    color: #cbd5e1;
+}
+
+body.tema-escuro .gasto-fixo-card-footer {
+    border-top-color: #475569;
+}
+
+body.tema-escuro .gasto-fixo-card-footer strong {
+    color: #93c5fd;
+}
+
+body.tema-escuro .gastos-fixos-filtros input,
+body.tema-escuro .gastos-fixos-filtros select {
+    background-color: #2a2a2a;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+
+body.tema-escuro .btn-editar-gasto-fixo {
+    color: #cbd5e1;
+}
+
+body.tema-escuro .btn-editar-gasto-fixo:hover {
+    color: #ffffff;
+}
+
+body.tema-escuro .btn-excluir-gasto-fixo {
+    color: #6b7280;
+}
+
+body.tema-escuro .btn-excluir-gasto-fixo:hover {
+    color: #ef4444;
+}
+
+/* Botão Novo Gasto Fixo */
+
+.btn-novo-gasto-fixo {
+    background-color: #1E3A8A;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-novo-gasto-fixo:hover {
+    background-color: #1e40af;
+}
+

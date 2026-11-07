@@ -5,8 +5,10 @@ import {
     collection,
     doc,
     getDocs,
+    getDoc,
     setDoc,
-    deleteDoc
+    deleteDoc,
+    runTransaction
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
 // Retorna a coleção financeira de um usuário.
@@ -101,4 +103,71 @@ export async function salvarMetaFirestore(uid, meta) {
 
 export async function excluirMetaFirestore(uid, id) {
     return excluirDado(uid, "metas", id);
+}
+
+// Gastos Fixos
+
+export async function carregarGastosFixosFirestore(uid) {
+    return carregarDados(uid, "gastosFixos");
+}
+
+export async function salvarGastoFixoFirestore(uid, gastoFixo) {
+    return salvarDado(uid, "gastosFixos", gastoFixo);
+}
+
+export async function excluirGastoFixoFirestore(uid, id) {
+    return excluirDado(uid, "gastosFixos", id);
+}
+
+// Lança um gasto fixo como transação, impedindo duplicidade.
+export async function lancarGastoFixoFirestore(
+    uid,
+    gastoFixoId,
+    periodo,
+    transacao
+) {
+    const usuario = auth.currentUser;
+
+    if (!usuario || usuario.uid !== uid) {
+        throw new Error("Usuário não autenticado ou UID inválido.");
+    }
+
+    const transacaoRef = doc(
+        obterColecao(uid, "transacoes")
+    );
+
+    const marcadorRef = doc(
+        db,
+        "users",
+        uid,
+        "lancamentosGastosFixos",
+        `${gastoFixoId}_${periodo}`
+    );
+
+    await runTransaction(db, async (operacao) => {
+
+        const marcador = await operacao.get(marcadorRef);
+
+        if (marcador.exists()) {
+            throw new Error("GASTO_FIXO_JA_LANCADO");
+        }
+
+        operacao.set(transacaoRef, {
+            ...transacao,
+            id: transacaoRef.id
+        });
+
+        operacao.set(marcadorRef, {
+            gastoFixoId,
+            periodo,
+            transacaoId: transacaoRef.id,
+            criadoEm: new Date().toISOString()
+        });
+
+    });
+
+    return {
+        ...transacao,
+        id: transacaoRef.id
+    };
 }

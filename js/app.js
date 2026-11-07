@@ -26,6 +26,15 @@ import {
     prepararNovaMeta
 } from "./metas.js";
 
+import {
+    salvarGastoFixo,
+    listarGastosFixos,
+    excluirGastoFixo,
+    editarGastoFixo,
+    lancarGastosFixosSelecionados
+} from "./gastos-fixos.js";
+
+
 
 
 import {
@@ -72,7 +81,21 @@ campoMetaInicial,
 campoMetaMes,
 campoMetaAno,
 seletorTema,
-botaoLimparDados
+botaoLimparDados,
+    secaoGastosFixos,
+    botaoNovoGastoFixo,
+    modalGastoFixo,
+    formularioGastoFixo,
+    botaoCancelarGastoFixo,
+    campoGastoFixoDescricao,
+    campoGastoFixoValor,
+    campoGastoFixoCategoria,
+    campoGastoFixoDia,
+    listaGastosFixos,
+    campoGastosFixosMes,
+campoGastosFixosAno,
+selecionarTodosGastos,
+botaoLancarGastosFixos
 } from "./dom.js";
 
 
@@ -86,6 +109,9 @@ window.editarTransacao = editarTransacao;
 window.excluirMeta = excluirMeta;
 
 window.editarMeta = editarMeta;
+
+window.excluirGastoFixo = excluirGastoFixo;
+window.editarGastoFixo = editarGastoFixo;
 
 
 
@@ -280,6 +306,19 @@ campoMetaInicial.addEventListener("input", () => {
 
 botaoNova.addEventListener("click", abrirFormulario);
 
+// Abrir modal de Gastos Fixos
+
+botaoNovoGastoFixo.addEventListener("click", () => {
+    formularioGastoFixo.reset();
+    modalGastoFixo.classList.remove("oculto");
+});
+
+// Cancelar cadastro de Gasto Fixo
+
+botaoCancelarGastoFixo.addEventListener("click", () => {
+    modalGastoFixo.classList.add("oculto");
+});
+
 botaoNovaMeta.addEventListener("click", () => {
 
     prepararNovaMeta();
@@ -344,6 +383,7 @@ console.log("secaoMetas:", secaoMetas);
 const menuDashboard = document.querySelector("#menu-dashboard");
 const menuTransacoes = document.querySelector("#menu-transacoes");
 const menuConfiguracoes = document.querySelector("#menu-configuracoes");
+const menuGastosFixos = document.querySelector("#menu-gastos-fixos");
 
 const secaoDashboard = document.querySelector(".cards");
 const secaoDashboardHeader = document.querySelector(".dashboard-header");
@@ -361,6 +401,7 @@ function mostrarSecao(secao) {
     secaoGrafico.classList.add("oculto");
     secaoTransacoes.classList.add("oculto");
     secaoMetas.classList.add("oculto");
+        secaoGastosFixos.classList.add("oculto");
        secaoConfiguracoes.classList.add("oculto");
 
     secao.classList.remove("oculto");
@@ -411,6 +452,15 @@ menuConfiguracoes.addEventListener("click", () => {
     }
 });
 
+menuGastosFixos.addEventListener("click", () => {
+
+    mostrarSecao(secaoGastosFixos);
+
+    if (sidebar) {
+        sidebar.classList.remove("ativo");
+    }
+
+});
 
 
 
@@ -526,6 +576,107 @@ const valorAtual = campoMetaInicial.value === ""
     }
 });
 
+// Selecionar ou desmarcar todos os Gastos Fixos
+selecionarTodosGastos.addEventListener("change", () => {
+
+    const caixasSelecao = document.querySelectorAll(
+        ".checkbox-gasto-fixo"
+    );
+
+    caixasSelecao.forEach((caixa) => {
+        caixa.checked = selecionarTodosGastos.checked;
+    });
+
+});
+
+// Atualizar Selecionar todos ao marcar individualmente
+listaGastosFixos.addEventListener("change", (event) => {
+
+    if (!event.target.classList.contains("checkbox-gasto-fixo")) {
+        return;
+    }
+
+    const caixasSelecao = document.querySelectorAll(
+        ".checkbox-gasto-fixo"
+    );
+
+    selecionarTodosGastos.checked =
+        caixasSelecao.length > 0 &&
+        Array.from(caixasSelecao).every((caixa) => caixa.checked);
+
+});
+
+// Lançar despesas dos Gastos Fixos
+botaoLancarGastosFixos.addEventListener("click", async () => {
+
+    try {
+
+        const resultado = await lancarGastosFixosSelecionados();
+
+        if (resultado.lancados > 0) {
+            atualizarInterface();
+        }
+
+        selecionarTodosGastos.checked = false;
+
+        document.querySelectorAll(".checkbox-gasto-fixo").forEach((caixa) => {
+            caixa.checked = false;
+        });
+
+        const mensagens = [];
+
+        if (resultado.lancados > 0) {
+            mensagens.push(`${resultado.lancados} despesa(s) lançada(s)`);
+        }
+
+        if (resultado.duplicados > 0) {
+            mensagens.push(`${resultado.duplicados} já lançada(s) neste mês`);
+        }
+
+        if (resultado.falhas > 0) {
+            mensagens.push(`${resultado.falhas} falha(s)`);
+        }
+
+        mostrarNotificacao(mensagens.join(". ") + ".");
+
+    } catch (erro) {
+
+        console.error("Erro ao lançar gastos fixos:", erro);
+
+        mostrarNotificacao(erro.message);
+
+    }
+
+});
+
+// Salvar Gasto Fixo
+formularioGastoFixo.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    try {
+
+        const salvo = await salvarGastoFixo();
+
+        if (!salvo) {
+            return;
+        }
+
+        formularioGastoFixo.reset();
+        modalGastoFixo.classList.add("oculto");
+
+        mostrarNotificacao("Gasto fixo salvo com sucesso!");
+
+    } catch (erro) {
+
+        console.error("Erro ao salvar gasto fixo:", erro);
+
+        mostrarNotificacao("Não foi possível salvar o gasto fixo.");
+
+    }
+
+});
+
 // Fechar modal com a tecla ESC
 document.addEventListener("keydown", function (event) {
 
@@ -608,5 +759,10 @@ carregarConfiguracoes();
 atualizarInterface();
 aplicarFiltros();
 listarMetas();
+
+campoGastosFixosMes.value = new Date().getMonth() + 1;
+campoGastosFixosAno.value = new Date().getFullYear();
+
+listarGastosFixos();
 lucide.createIcons();
 

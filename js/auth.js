@@ -11,10 +11,11 @@ import {
 
 import {
     carregarTransacoesFirestore,
-    carregarMetasFirestore
+    carregarMetasFirestore,
+    carregarGastosFixosFirestore
 } from "./firestore-service.js";
 
-import { transacoes, metas } from "./state.js";
+import { transacoes, metas, gastosFixos } from "./state.js";
 
 const telaAutenticacao = document.querySelector("#tela-autenticacao");
 const formularioLogin = document.querySelector("#form-login");
@@ -131,6 +132,8 @@ if (!usuario) {
     transacoes.splice(0, transacoes.length);
     metas.splice(0, metas.length);
 
+    gastosFixos.splice(0, gastosFixos.length);
+
     // Limpa os dados visíveis na interface.
     atualizarInterface();
 
@@ -151,14 +154,19 @@ if (!usuario) {
     mensagemAutenticacao.textContent = "";
 
     try {
-        const [transacoesSalvas, metasSalvas] = await Promise.all([
-            carregarTransacoesFirestore(usuario.uid),
-            carregarMetasFirestore(usuario.uid)
-        ]);
+     const [
+    transacoesSalvas,
+    metasSalvas,
+    gastosFixosSalvos
+] = await Promise.all([
+    carregarTransacoesFirestore(usuario.uid),
+    carregarMetasFirestore(usuario.uid),
+    carregarGastosFixosFirestore(usuario.uid)
+]);
 
         transacoes.splice(0, transacoes.length, ...transacoesSalvas);
         metas.splice(0, metas.length, ...metasSalvas);
-
+        gastosFixos.splice(0, gastosFixos.length, ...gastosFixosSalvos);
     
 if (!aplicativoIniciado) {
     await import("./app.js");

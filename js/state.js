@@ -13,3 +13,4 @@ export let metas = [];
 
 export let transacoesFiltradas = [];
 
+export let gastosFixos = [];
