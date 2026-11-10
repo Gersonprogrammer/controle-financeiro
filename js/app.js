@@ -113,9 +113,52 @@ window.editarMeta = editarMeta;
 window.excluirGastoFixo = excluirGastoFixo;
 window.editarGastoFixo = editarGastoFixo;
 
+function atualizarOpcoesAnos() {
 
+    const anoAtual = new Date().getFullYear();
+
+    const anoSelecionado = filtroAno.value;
+
+    const anos = new Set();
+
+    // Adiciona o ano atual e os próximos 10 anos.
+    for (let ano = anoAtual; ano <= anoAtual + 10; ano++) {
+        anos.add(ano);
+    }
+
+    // Mantém também os anos que possuem transações.
+    transacoes.forEach(transacao => {
+        anos.add(Number(transacao.ano));
+    });
+
+    // Organiza os anos em ordem crescente.
+    const anosOrdenados = [...anos].sort((a, b) => a - b);
+
+    // Atualiza os dois seletores.
+    [filtroAno, dashboardFiltroAno].forEach(seletor => {
+
+        seletor.innerHTML = '<option value="">Todos</option>';
+
+        anosOrdenados.forEach(ano => {
+
+            const opcao = document.createElement("option");
+
+            opcao.value = ano;
+            opcao.textContent = ano;
+
+            seletor.appendChild(opcao);
+
+        });
+
+        seletor.value = anoSelecionado;
+
+    });
+
+}
 
 function aplicarFiltros() {
+
+      atualizarOpcoesAnos();
 
     const texto = campoPesquisa.value.toLowerCase();
 

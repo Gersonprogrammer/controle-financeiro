@@ -1992,3 +1992,9 @@ body.tema-escuro .btn-excluir-gasto-fixo:hover {
     background-color: #1e40af;
 }
 
+/* Ocultar temporariamente o menu Relatórios */
+
+#menu-relatorios {
+    display: none;
+}
+
